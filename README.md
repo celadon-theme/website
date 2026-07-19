@@ -59,5 +59,5 @@ the design project and compile them the same way.
 ## Deploy
 
 Netlify: build command `npm run build`, publish directory `dist`. Point the
-`celadontheme.com` domain at the Netlify site. The pinned Node version is 20
-(`netlify.toml`).
+`celadontheme.com` domain at the Netlify site. The pinned Node version is 24
+(`netlify.toml`) — the current Active LTS.
