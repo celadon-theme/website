@@ -1,0 +1,18 @@
+{
+  "name": "celadon-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Celadon — theme showcase and submission site",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

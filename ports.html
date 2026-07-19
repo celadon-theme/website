@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ports — Celadon</title>
+<meta name="description" content="Celadon ports for terminals, editors and CLI tools. Available now: Ghostty, iTerm2, oh-my-posh.">
+<link rel="icon" type="image/svg+xml" href="/assets/celadon-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="stylesheet" href="/src/styles/site.css">
+<script src="/celadon-theme.js"></script>
+</head>
+<body>
+<div class="cel-page">
+
+<nav class="cel-nav cel-container" style="padding-top:22px;padding-bottom:22px" aria-label="Primary">
+  <a href="/" class="cel-brand">
+    <img src="/assets/celadon-logo.svg" alt="" width="38" height="38" class="cel-brand-mark">
+    <span class="cel-brand-name">Celadon</span>
+  </a>
+  <div class="cel-navlinks">
+    <a href="/" class="cel-navlink">Home</a>
+    <a href="/palette.html" class="cel-navlink">Palette</a>
+    <a href="/ports.html" class="cel-navlink is-active" aria-current="page">Ports</a>
+    <a href="/contribute.html" class="cel-navlink">Contribute</a>
+  </div>
+  <div class="cel-switch" role="group" aria-label="Theme variant">
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
+    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
+  </div>
+</nav>
+
+<main class="cel-main">
+  <section class="cel-container" style="padding-top:56px;padding-bottom:88px">
+    <h1 class="cel-h1" style="font-size:46px">Ports</h1>
+    <p class="cel-lede cel-ports-intro">Each port is plain files generated from the same source — install them, don't edit them. Available now for Ghostty, iTerm2 and oh-my-posh; more are on the way.</p>
+
+    <div class="cel-portgroup">
+      <h2 class="cel-portgroup-title">Terminals</h2>
+      <div class="cel-ports">
+        <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/ghostty" target="_blank" rel="noopener" class="cel-port">
+          <div class="cel-port-head"><span class="cel-port-name">Ghostty</span><span class="cel-port-arrow" aria-hidden="true">&rarr;</span></div>
+          <p class="cel-port-desc">Drop the theme in <span class="cel-mono">~/.config/ghostty/themes</span> and set <span class="cel-mono">theme = celadon</span>.</p>
+        </a>
+        <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/iterm2" target="_blank" rel="noopener" class="cel-port">
+          <div class="cel-port-head"><span class="cel-port-name">iTerm2</span><span class="cel-port-arrow" aria-hidden="true">&rarr;</span></div>
+          <p class="cel-port-desc">Import the <span class="cel-mono">.itermcolors</span> preset under Settings &rarr; Profiles &rarr; Colors.</p>
+        </a>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">Alacritty</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Import the palette TOML from your <span class="cel-mono">alacritty.toml</span>.</p>
+        </div>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">Kitty</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Include the <span class="cel-mono">.conf</span> from your <span class="cel-mono">kitty.conf</span>.</p>
+        </div>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">WezTerm</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Load the Lua palette in your <span class="cel-mono">wezterm.lua</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cel-portgroup">
+      <h2 class="cel-portgroup-title">Editors</h2>
+      <div class="cel-ports">
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">Neovim</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Colorscheme plugin from the org, then <span class="cel-mono">colorscheme celadon</span>.</p>
+        </div>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">VS Code</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Install the Celadon extension and pick it in the theme switcher.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cel-portgroup">
+      <h2 class="cel-portgroup-title">Shell &amp; CLI</h2>
+      <div class="cel-ports">
+        <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/oh-my-posh" target="_blank" rel="noopener" class="cel-port">
+          <div class="cel-port-head"><span class="cel-port-name">oh-my-posh</span><span class="cel-port-arrow" aria-hidden="true">&rarr;</span></div>
+          <p class="cel-port-desc">Point oh-my-posh at <span class="cel-mono">celadon.omp.toml</span> — variant-less, follows your terminal's ANSI.</p>
+        </a>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">tmux</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Source the theme snippet from your <span class="cel-mono">tmux.conf</span>.</p>
+        </div>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">bat</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Add the theme to bat's config, then <span class="cel-mono">--theme=celadon</span>.</p>
+        </div>
+        <div class="cel-port cel-port-planned">
+          <div class="cel-port-head"><span class="cel-port-name">delta</span><span class="cel-port-tag">Planned</span></div>
+          <p class="cel-port-desc">Point delta's <span class="cel-mono">syntax-theme</span> at Celadon for readable git diffs.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="cel-caption" style="margin-top:44px;font-size:14px">Don't see your app? <a href="/contribute.html">Contribute a port</a> — the generator makes it a few parameters, not a hand-tuned palette.</p>
+  </section>
+</main>
+
+<footer style="border-top:1px solid var(--cel-border)">
+  <div class="cel-container cel-footer-bar" style="padding-top:26px;padding-bottom:26px">
+    <span>Celadon · MIT license · named for the pale grey-green ceramic glaze</span>
+    <span class="cel-footer-links">
+      <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener">GitHub</a>
+      <a href="/contribute.html">Contribute</a>
+    </span>
+  </div>
+</footer>
+
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
