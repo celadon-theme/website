@@ -61,3 +61,14 @@ the design project and compile them the same way.
 Netlify: build command `npm run build`, publish directory `dist`. Point the
 `celadontheme.com` domain at the Netlify site. The pinned Node version is 24
 (`netlify.toml`) — the current Active LTS.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). This repo is only the website — theme,
+port and color issues belong in the
+[celadon-theme repo](https://github.com/celadon-theme/celadon-theme).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
