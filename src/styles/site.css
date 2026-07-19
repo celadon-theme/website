@@ -298,7 +298,7 @@ a:hover { color: var(--cel-green-b); }
 .cel-port:hover .cel-port-arrow { color: var(--cel-accent); transform: translateX(3px); }
 .cel-port-desc { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--cel-muted); }
 .cel-port-desc .cel-mono { color: var(--cel-fg); font-size: 12.5px; }
-.cel-port-planned { cursor: default; opacity: 0.6; }
+.cel-port-planned { cursor: default; opacity: 0.72; }
 .cel-port-planned:hover { border-color: var(--cel-border); }
 .cel-port-tag {
   flex: none;

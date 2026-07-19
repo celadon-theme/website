@@ -43,7 +43,7 @@ netlify.toml          build command + publish dir + asset caching
 ## Design source
 
 The pages are implemented from a Claude Design project — **"Theme showcase and
-submission site"** (`a05a18f5-…`). The source there is authored in a `.dc.html`
+submission site"**. The source there is authored in a `.dc.html`
 design-compiler format (`Home.dc.html`, `Palette.dc.html`, `Ports.dc.html`,
 `Contribute.dc.html`) that renders inside the Claude Design previewer. This repo
 is the hand-compiled, production implementation of that design:
