@@ -1,0 +1,352 @@
+/* Celadon site layer.
+   The --cel-* tokens below are the *default* (celadon) variant; celadon-theme.js
+   overrides them on <html> at load and on every variant switch. The mockup carried
+   these as inline styles and fake `style-hover` attributes — here they become real
+   CSS so :hover / :focus-visible / responsive layout actually work in a browser. */
+
+:root {
+  --cel-bg: #131b11;
+  --cel-surface: #1a2418;
+  --cel-alt: #232f20;
+  --cel-border: #2e3b2b;
+  --cel-fg: #c9d5c6;
+  --cel-muted: #939f91;
+  --cel-faint: #727e70;
+  --cel-accent: #9ecf75;
+  --cel-accent-ink: #131b11;
+  --cel-red: #fba29b;
+  --cel-green: #9ecf75;
+  --cel-yellow: #dcbb50;
+  --cel-blue: #7cc7fb;
+  --cel-magenta: #f49cdb;
+  --cel-cyan: #37d8c9;
+  --cel-red-b: #fec4be;
+  --cel-green-b: #b6e68f;
+  --cel-yellow-b: #f1d26f;
+  --cel-blue-b: #abdbfe;
+  --cel-magenta-b: #ffbceb;
+  --cel-cyan-b: #62efdf;
+  --cel-shadow-md: 0 3px 10px rgba(0, 0, 0, .4);
+  --cel-shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
+}
+
+body {
+  margin: 0;
+  background: var(--cel-bg);
+  color: var(--cel-fg);
+  font-family: var(--font-body);
+  transition: background .35s ease, color .35s ease;
+}
+a { color: var(--cel-accent); text-underline-offset: 3px; }
+a:hover { color: var(--cel-green-b); }
+::selection { background: color-mix(in srgb, var(--cel-accent) 28%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--cel-accent); outline-offset: 2px; }
+
+/* Page shell */
+.cel-page { min-height: 100vh; display: flex; flex-direction: column; }
+.cel-main { flex: 1; }
+
+.cel-container {
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* — top nav — */
+.cel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cel-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--cel-fg);
+}
+.cel-brand-mark { width: 38px; height: 38px; border-radius: 10px; }
+.cel-brand-name { font-family: var(--font-heading); font-size: 22px; }
+
+.cel-navlinks { display: flex; align-items: center; gap: 6px; }
+.cel-navlink {
+  text-decoration: none;
+  color: var(--cel-muted);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: color .2s ease, background .2s ease;
+}
+.cel-navlink:hover { color: var(--cel-fg); background: var(--cel-alt); }
+.cel-navlink.is-active { color: var(--cel-fg); background: var(--cel-alt); }
+
+/* variant switcher (nav) */
+.cel-switch {
+  display: flex;
+  gap: 4px;
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: 999px;
+  padding: 4px;
+}
+.cel-vpill {
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cel-muted);
+  transition: color .2s ease, background .2s ease;
+}
+.cel-vpill:hover { color: var(--cel-fg); }
+.cel-vpill.is-active { background: var(--cel-accent); color: var(--cel-accent-ink); }
+
+/* — buttons — */
+.cel-btn-primary,
+.cel-btn-outline {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  padding: 12px 26px;
+  border-radius: 999px;
+}
+.cel-btn-primary {
+  background: var(--cel-accent);
+  color: var(--cel-accent-ink);
+  transition: filter .2s ease;
+}
+.cel-btn-primary:hover { filter: brightness(1.08); color: var(--cel-accent-ink); }
+.cel-btn-outline {
+  border: 1.5px solid var(--cel-border);
+  color: var(--cel-fg);
+  transition: border-color .2s ease, color .2s ease;
+}
+.cel-btn-outline:hover { border-color: var(--cel-accent); color: var(--cel-fg); }
+
+/* — hero — */
+.cel-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+.cel-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--cel-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cel-muted);
+  margin-bottom: 22px;
+}
+.cel-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--cel-accent); }
+.cel-h1 {
+  font-size: 60px;
+  margin: 0 0 18px;
+  color: var(--cel-fg);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.cel-lede {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--cel-muted);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+.cel-cta { display: flex; gap: 12px; margin-top: 26px; align-items: center; flex-wrap: wrap; }
+.cel-hero-art { position: relative; display: flex; justify-content: center; }
+.cel-hero-glow {
+  position: absolute;
+  inset: -30px -10px;
+  background: radial-gradient(closest-side, var(--cel-alt), transparent 72%);
+  border-radius: 999px;
+}
+.cel-hero-tile {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+  border-radius: 52px;
+  box-shadow: var(--cel-shadow-lg);
+}
+
+/* — terminal — */
+.cel-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+.cel-term {
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--cel-shadow-lg);
+  overflow: hidden;
+}
+.cel-term-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--cel-border);
+}
+.cel-term-dot { width: 12px; height: 12px; border-radius: 999px; }
+.cel-term-title { margin-left: 12px; font-size: 12px; color: var(--cel-faint); }
+.cel-term-body {
+  padding: 24px 26px;
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-x: auto;
+}
+.cel-caption { margin: 14px 4px 0; font-size: 13px; color: var(--cel-faint); }
+
+/* — section headings — */
+.cel-h2 { font-size: 34px; color: var(--cel-fg); margin: 0 0 8px; }
+.cel-section-lede { color: var(--cel-muted); margin: 0 0 28px; text-wrap: pretty; }
+
+/* — variant cards — */
+.cel-variants { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cel-vcard {
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  background: var(--cel-surface);
+  border: 1.5px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  color: var(--cel-fg);
+  transition: border-color .2s ease;
+}
+.cel-vcard:hover { border-color: var(--cel-accent); }
+.cel-vcard.is-active { border-color: var(--cel-accent); }
+.cel-swatches { display: flex; gap: 6px; margin-bottom: 14px; }
+.cel-sw { width: 22px; height: 22px; border-radius: 999px; border: 1px solid transparent; }
+.cel-vcard-slug { font-family: var(--font-heading); font-size: 19px; }
+.cel-vcard-kind { font-size: 13px; color: var(--cel-muted); margin-top: 4px; }
+.cel-vcard-use { font-size: 13px; color: var(--cel-faint); }
+
+/* — "generated" band — */
+.cel-band {
+  background: var(--cel-surface);
+  border-top: 1px solid var(--cel-border);
+  border-bottom: 1px solid var(--cel-border);
+}
+.cel-gen { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
+.cel-gen-copy { color: var(--cel-muted); line-height: 1.65; text-wrap: pretty; }
+.cel-gen-list { display: grid; gap: 14px; }
+.cel-feature {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  background: var(--cel-bg);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+.cel-feature-badge {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--cel-alt);
+  display: grid;
+  place-items: center;
+}
+.cel-feature strong { color: var(--cel-fg); }
+.cel-feature span.body { color: var(--cel-muted); }
+
+/* — ports directory — */
+.cel-ports-intro { max-width: 58ch; margin: 0 0 8px; }
+.cel-portgroup { margin-top: 44px; }
+.cel-portgroup-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
+  margin: 0 0 16px;
+}
+.cel-ports { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cel-port {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--cel-fg);
+  background: var(--cel-surface);
+  border: 1.5px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: border-color .2s ease;
+}
+.cel-port:hover { border-color: var(--cel-accent); color: var(--cel-fg); }
+.cel-port-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cel-port-name { font-family: var(--font-heading); font-size: 19px; }
+.cel-port-arrow { color: var(--cel-muted); transition: color .2s ease, transform .2s ease; }
+.cel-port:hover .cel-port-arrow { color: var(--cel-accent); transform: translateX(3px); }
+.cel-port-desc { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--cel-muted); }
+.cel-port-desc .cel-mono { color: var(--cel-fg); font-size: 12.5px; }
+.cel-port-planned { cursor: default; opacity: 0.6; }
+.cel-port-planned:hover { border-color: var(--cel-border); }
+.cel-port-tag {
+  flex: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
+  border: 1px solid var(--cel-border);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* — footer — */
+.cel-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--cel-faint);
+}
+.cel-footer-links { display: flex; gap: 18px; }
+.cel-footer-links a { color: var(--cel-muted); }
+
+/* — simple centered page (placeholders / 404) — */
+.cel-simple { max-width: 640px; margin: 0 auto; padding: 96px 32px 120px; text-align: center; }
+.cel-simple h1 { font-size: 46px; color: var(--cel-fg); margin: 0 0 14px; line-height: 1.06; }
+.cel-simple p { color: var(--cel-muted); font-size: 17px; line-height: 1.6; margin: 0 auto 28px; max-width: 46ch; }
+
+/* ── responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cel-hero { grid-template-columns: 1fr; gap: 36px; }
+  .cel-hero-art { order: -1; }
+  .cel-gen { grid-template-columns: 1fr; gap: 32px; }
+  .cel-variants { grid-template-columns: repeat(2, 1fr); }
+  .cel-ports { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .cel-h1 { font-size: 46px; }
+  .cel-h2 { font-size: 28px; }
+}
+@media (max-width: 560px) {
+  .cel-container { padding-left: 20px; padding-right: 20px; }
+  .cel-variants { grid-template-columns: 1fr; }
+  .cel-ports { grid-template-columns: 1fr; }
+  .cel-h1 { font-size: 38px; }
+  .cel-footer-bar { flex-direction: column; align-items: flex-start; }
+  .cel-nav { gap: 16px; }
+}

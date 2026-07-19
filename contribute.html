@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contribute — Celadon</title>
+<meta name="description" content="Submit a Celadon port or help improve the theme. Coming soon.">
+<link rel="icon" type="image/svg+xml" href="/assets/celadon-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="stylesheet" href="/src/styles/site.css">
+<script src="/celadon-theme.js"></script>
+</head>
+<body>
+<div class="cel-page">
+
+<nav class="cel-nav cel-container" style="padding-top:22px;padding-bottom:22px" aria-label="Primary">
+  <a href="/" class="cel-brand">
+    <img src="/assets/celadon-logo.svg" alt="" width="38" height="38" class="cel-brand-mark">
+    <span class="cel-brand-name">Celadon</span>
+  </a>
+  <div class="cel-navlinks">
+    <a href="/" class="cel-navlink">Home</a>
+    <a href="/palette.html" class="cel-navlink">Palette</a>
+    <a href="/ports.html" class="cel-navlink">Ports</a>
+    <a href="/contribute.html" class="cel-navlink is-active" aria-current="page">Contribute</a>
+  </div>
+  <div class="cel-switch" role="group" aria-label="Theme variant">
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
+    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
+  </div>
+</nav>
+
+<main class="cel-main">
+  <section class="cel-simple">
+    <h1>Contribute</h1>
+    <p>Submit a port, tighten a gate, or file a palette issue. The submission flow is on its way — until then, open a pull request on GitHub.</p>
+    <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener" class="cel-btn-primary">Open GitHub</a>
+  </section>
+</main>
+
+<footer style="border-top:1px solid var(--cel-border)">
+  <div class="cel-container cel-footer-bar" style="padding-top:26px;padding-bottom:26px">
+    <span>Celadon · MIT license · named for the pale grey-green ceramic glaze</span>
+    <span class="cel-footer-links">
+      <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener">GitHub</a>
+      <a href="/contribute.html">Contribute</a>
+    </span>
+  </div>
+</footer>
+
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
