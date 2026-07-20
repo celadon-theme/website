@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # npm dev dependencies (Vite, etc.) — one grouped PR per week to keep noise low.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      npm:
+        patterns: ["*"]

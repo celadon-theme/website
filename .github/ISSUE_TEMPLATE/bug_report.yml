@@ -1,0 +1,34 @@
+name: Website bug
+description: Something on celadontheme.com is broken — layout, a link, the variant switcher, accessibility.
+labels: ["bug"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Which page or URL?
+      placeholder: e.g. /ports.html
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong?
+      description: What did you expect, and what happened instead? Screenshots help a lot.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser / OS
+      placeholder: e.g. Safari 18 on macOS 15, or Chrome on iPhone 15
+  - type: dropdown
+    id: variant
+    attributes:
+      label: Variant (if relevant)
+      options:
+        - Not variant-specific
+        - Sky (light)
+        - Powder (dark, low contrast)
+        - Celadon (dark, default)
+        - Jade (dark, high contrast)
