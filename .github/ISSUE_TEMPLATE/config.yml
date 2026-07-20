@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Request an app port
+    url: https://github.com/celadon-theme/celadon-theme/issues/new?template=port_request.yml
+    about: Ports live in the theme repo — request Celadon for a new app there.
+  - name: A color looks wrong / palette question
+    url: https://github.com/celadon-theme/celadon-theme/issues/new?template=bug_report.yml
+    about: The palette is generated in the theme repo. Report color issues there.
