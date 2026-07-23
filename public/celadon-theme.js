@@ -44,7 +44,7 @@
       }
     }
   };
-  var ORDER = ['celadon-sky', 'celadon-powder', 'celadon', 'celadon-jade'];
+  var ORDER = ['celadon', 'celadon-powder', 'celadon-jade', 'celadon-sky'];
   function current() {
     try { var v = localStorage.getItem('celadon-variant'); return V[v] ? v : 'celadon'; }
     catch (e) { return 'celadon'; }

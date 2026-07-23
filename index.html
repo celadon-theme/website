@@ -32,10 +32,10 @@
     <a href="/contribute.html" class="cel-navlink">Contribute</a>
   </div>
   <div class="cel-switch" role="group" aria-label="Theme variant">
-    <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
-    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
     <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
   </div>
 </nav>
 
@@ -88,21 +88,21 @@
   <!-- Variants -->
   <section class="cel-container" style="padding-bottom:72px">
     <h2 class="cel-h2">One family, four grades</h2>
-    <p class="cel-section-lede" style="max-width:60ch">Light to dark: sky &rarr; powder &rarr; celadon &rarr; jade. Same content, same honest accents — pick the contrast your room needs.</p>
+    <p class="cel-section-lede" style="max-width:60ch">Celadon leads; the rest run light to dark &mdash; powder &rarr; jade, then sky for daylight. Same content, same honest accents — pick the contrast your room needs.</p>
     <div class="cel-variants">
       <!-- Swatches mirror celadon-theme.js: [bg, fg, red, green, yellow, blue], edge = variant border -->
-      <button type="button" class="cel-vcard" data-variant-pick="celadon-sky" aria-pressed="false">
+      <button type="button" class="cel-vcard is-active" data-variant-pick="celadon" aria-pressed="true">
         <div class="cel-swatches">
-          <span class="cel-sw" style="background:#eaf6e8;border-color:#c6d9c1"></span>
-          <span class="cel-sw" style="background:#2b3627;border-color:#c6d9c1"></span>
-          <span class="cel-sw" style="background:#b23c33;border-color:#c6d9c1"></span>
-          <span class="cel-sw" style="background:#4f7f2b;border-color:#c6d9c1"></span>
-          <span class="cel-sw" style="background:#8f6c0e;border-color:#c6d9c1"></span>
-          <span class="cel-sw" style="background:#23639c;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#131b11;border-color:#2e3b2b"></span>
+          <span class="cel-sw" style="background:#c9d5c6;border-color:#2e3b2b"></span>
+          <span class="cel-sw" style="background:#fba29b;border-color:#2e3b2b"></span>
+          <span class="cel-sw" style="background:#9ecf75;border-color:#2e3b2b"></span>
+          <span class="cel-sw" style="background:#dcbb50;border-color:#2e3b2b"></span>
+          <span class="cel-sw" style="background:#7cc7fb;border-color:#2e3b2b"></span>
         </div>
-        <div class="cel-vcard-slug">celadon-sky</div>
-        <div class="cel-vcard-kind">light · sage paper</div>
-        <div class="cel-vcard-use">daytime</div>
+        <div class="cel-vcard-slug">celadon</div>
+        <div class="cel-vcard-kind">dark · medium contrast</div>
+        <div class="cel-vcard-use">the default</div>
       </button>
       <button type="button" class="cel-vcard" data-variant-pick="celadon-powder" aria-pressed="false">
         <div class="cel-swatches">
@@ -117,19 +117,6 @@
         <div class="cel-vcard-kind">dark · low contrast</div>
         <div class="cel-vcard-use">night, dim rooms</div>
       </button>
-      <button type="button" class="cel-vcard is-active" data-variant-pick="celadon" aria-pressed="true">
-        <div class="cel-swatches">
-          <span class="cel-sw" style="background:#131b11;border-color:#2e3b2b"></span>
-          <span class="cel-sw" style="background:#c9d5c6;border-color:#2e3b2b"></span>
-          <span class="cel-sw" style="background:#fba29b;border-color:#2e3b2b"></span>
-          <span class="cel-sw" style="background:#9ecf75;border-color:#2e3b2b"></span>
-          <span class="cel-sw" style="background:#dcbb50;border-color:#2e3b2b"></span>
-          <span class="cel-sw" style="background:#7cc7fb;border-color:#2e3b2b"></span>
-        </div>
-        <div class="cel-vcard-slug">celadon</div>
-        <div class="cel-vcard-kind">dark · medium contrast</div>
-        <div class="cel-vcard-use">the default</div>
-      </button>
       <button type="button" class="cel-vcard" data-variant-pick="celadon-jade" aria-pressed="false">
         <div class="cel-swatches">
           <span class="cel-sw" style="background:#0c1309;border-color:#2d3d27"></span>
@@ -142,6 +129,19 @@
         <div class="cel-vcard-slug">celadon-jade</div>
         <div class="cel-vcard-kind">dark · high contrast</div>
         <div class="cel-vcard-use">bright rooms, glare</div>
+      </button>
+      <button type="button" class="cel-vcard" data-variant-pick="celadon-sky" aria-pressed="false">
+        <div class="cel-swatches">
+          <span class="cel-sw" style="background:#eaf6e8;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#2b3627;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#b23c33;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#4f7f2b;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#8f6c0e;border-color:#c6d9c1"></span>
+          <span class="cel-sw" style="background:#23639c;border-color:#c6d9c1"></span>
+        </div>
+        <div class="cel-vcard-slug">celadon-sky</div>
+        <div class="cel-vcard-kind">light · sage paper</div>
+        <div class="cel-vcard-use">daytime</div>
       </button>
     </div>
   </section>
