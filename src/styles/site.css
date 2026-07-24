@@ -28,6 +28,8 @@
   --cel-cyan-b: #62efdf;
   --cel-shadow-md: 0 3px 10px rgba(0, 0, 0, .4);
   --cel-shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
+  /* Same elevation as -lg, for filter: drop-shadow() (no spread, one layer). */
+  --cel-shadow-lg-drop: 0 12px 26px rgba(0, 0, 0, .45);
 }
 
 body {
@@ -181,8 +183,9 @@ a:hover { color: var(--cel-green-b); }
   width: 250px;
   height: 250px;
   max-width: 100%;
-  border-radius: 52px;
-  box-shadow: var(--cel-shadow-lg);
+  /* drop-shadow, not box-shadow: the tile art is inset inside transparent
+     padding, so a box shadow would float off its edge. */
+  filter: drop-shadow(var(--cel-shadow-lg-drop));
 }
 
 /* — terminal — */
