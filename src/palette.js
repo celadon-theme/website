@@ -69,8 +69,8 @@ function render(name) {
       <span class="cel-spec-swatch" style="background:${hex}"></span>
       <span><span class="cel-spec-role">${role}</span><span class="cel-spec-desc">${desc}</span></span>
       <span class="cel-spec-hex" data-hex-label>${hex}</span>
-      <span class="cel-spec-dim">${hexToRgb(hex).join('  ')}</span>
-      <span class="cel-spec-dim">${formatOklch(oklch(hex))}</span>
+      <span class="cel-spec-dim cel-spec-wide">${hexToRgb(hex).join('  ')}</span>
+      <span class="cel-spec-dim cel-spec-wide">${formatOklch(oklch(hex))}</span>
       <span class="cel-spec-lc ${grade}">${role === 'bg' ? `${contrast} · fg` : contrast}</span>
     </button>`;
   }).join('');
