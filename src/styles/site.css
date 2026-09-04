@@ -1,14 +1,15 @@
-/* Celadon site layer.
-   The --cel-* tokens below are the *default* (celadon) variant; celadon-theme.js
-   overrides them on <html> at load and on every variant switch. The mockup carried
-   these as inline styles and fake `style-hover` attributes — here they become real
-   CSS so :hover / :focus-visible / responsive layout actually work in a browser. */
+/* Celadon site layer — the v2 editorial design compiled to real CSS.
+   The --cel-* tokens below are the default (celadon) variant; celadon-theme.js
+   overrides them on <html> before first paint and on every variant switch.
+   The design source carried these as inline styles and fake `style-hover`
+   attributes — here they become classes so :hover / :focus-visible and the
+   responsive collapses actually work. */
 
 :root {
   --cel-bg: #131b11;
-  --cel-surface: #1a2418;
+  --cel-surface: #182216;
   --cel-alt: #232f20;
-  --cel-border: #2e3b2b;
+  --cel-border: #2f3b2c;
   --cel-fg: #c9d5c6;
   --cel-muted: #939f91;
   --cel-faint: #727e70;
@@ -28,8 +29,7 @@
   --cel-cyan-b: #62efdf;
   --cel-shadow-md: 0 3px 10px rgba(0, 0, 0, .4);
   --cel-shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
-  /* Same elevation as -lg, for filter: drop-shadow() (no spread, one layer). */
-  --cel-shadow-lg-drop: 0 12px 26px rgba(0, 0, 0, .45);
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 body {
@@ -37,6 +37,9 @@ body {
   background: var(--cel-bg);
   color: var(--cel-fg);
   font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  overflow-x: clip;
   transition: background .35s ease, color .35s ease;
 }
 a { color: var(--cel-accent); text-underline-offset: 3px; }
@@ -44,52 +47,142 @@ a:hover { color: var(--cel-green-b); }
 ::selection { background: color-mix(in srgb, var(--cel-accent) 28%, transparent); }
 :focus { outline: none; }
 :focus-visible { outline: 2px solid var(--cel-accent); outline-offset: 2px; }
+/* ds.css gives p/h a default margin; the design sets every margin explicitly. */
+p, h1, h2, h3 { margin: 0; }
+h1, h2, h3 { font-weight: 400; }
 
-/* Page shell */
+/* ── shell ──────────────────────────────────────────────────── */
 .cel-page { min-height: 100vh; display: flex; flex-direction: column; }
 .cel-main { flex: 1; }
-
+.cel-main-pad { padding-top: 40px; padding-bottom: 72px; }
 .cel-container {
-  max-width: 1160px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  box-sizing: border-box;
   padding-left: 32px;
   padding-right: 32px;
 }
+.cel-mono { font-family: var(--font-mono); }
 
-/* — top nav — */
+/* ── type ───────────────────────────────────────────────────── */
+.cel-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cel-accent);
+}
+.cel-kicker-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cel-fg);
+}
+.cel-kicker-rule::before { content: ''; width: 72px; height: 1px; background: var(--cel-border); }
+.cel-kicker-rule.is-accent { color: var(--cel-accent); }
+.cel-kicker-rule.is-accent::before { background: var(--cel-fg); opacity: .5; }
+.cel-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
+}
+.cel-h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 5vw, 68px);
+  line-height: .98;
+  letter-spacing: -.02em;
+  color: var(--cel-fg);
+  text-wrap: balance;
+}
+.cel-h2-sm { font-size: clamp(40px, 4.5vw, 60px); line-height: 1; }
+.cel-h2-plain { font-size: 34px; line-height: 1.12; letter-spacing: -.01em; }
+.cel-lede { font-size: 17px; line-height: 1.65; color: var(--cel-muted); text-wrap: pretty; }
+.cel-prose { color: var(--cel-muted); line-height: 1.65; text-wrap: pretty; }
+.cel-textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.cel-textlink::after { content: ''; width: 28px; height: 1.5px; background: currentColor; }
+.cel-link { font-weight: 600; font-size: 14px; }
+
+/* ── buttons ────────────────────────────────────────────────── */
+.cel-btn {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, filter .2s ease;
+}
+/* Ports/Contribute use the display face at sentence case. */
+.cel-btn-display {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 12px 26px;
+}
+.cel-btn-primary { background: var(--cel-fg); color: var(--cel-bg); }
+.cel-btn-primary:hover { background: var(--cel-accent); color: var(--cel-accent-ink); }
+.cel-btn-accent { background: var(--cel-accent); color: var(--cel-accent-ink); }
+.cel-btn-accent:hover { filter: brightness(1.08); color: var(--cel-accent-ink); }
+.cel-btn-outline { border-color: var(--cel-border); color: var(--cel-fg); }
+.cel-btn-outline:hover { border-color: var(--cel-fg); color: var(--cel-fg); }
+.cel-btn-display.cel-btn-outline:hover { border-color: var(--cel-accent); }
+.cel-btn-group { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* ── nav ────────────────────────────────────────────────────── */
 .cel-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  position: relative;
+  z-index: 3;
 }
-.cel-brand {
+.cel-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--cel-fg); }
+.cel-brand:hover { color: var(--cel-fg); }
+.cel-brand-mark { width: 34px; height: 34px; border-radius: 9px; }
+.cel-brand-name { font-family: var(--font-heading); font-size: 20px; }
+.cel-navlinks { display: flex; align-items: center; gap: 28px; }
+.cel-navlink {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
-  color: var(--cel-fg);
-}
-.cel-brand-mark { width: 38px; height: 38px; border-radius: 10px; }
-.cel-brand-name { font-family: var(--font-heading); font-size: 22px; }
-
-.cel-navlinks { display: flex; align-items: center; gap: 6px; }
-.cel-navlink {
-  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
   color: var(--cel-muted);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  transition: color .2s ease, background .2s ease;
+  transition: color .2s ease;
 }
-.cel-navlink:hover { color: var(--cel-fg); background: var(--cel-alt); }
-.cel-navlink.is-active { color: var(--cel-fg); background: var(--cel-alt); }
+.cel-navlink:hover, .cel-navlink.is-active { color: var(--cel-fg); }
+.cel-navlink.is-active::before { content: ''; width: 18px; height: 1.5px; background: var(--cel-accent); }
 
-/* variant switcher (nav) */
 .cel-switch {
   display: flex;
   gap: 4px;
@@ -113,308 +206,728 @@ a:hover { color: var(--cel-green-b); }
 .cel-vpill:hover { color: var(--cel-fg); }
 .cel-vpill.is-active { background: var(--cel-accent); color: var(--cel-accent-ink); }
 
-/* — buttons — */
-.cel-btn-primary,
-.cel-btn-outline {
-  display: inline-block;
+/* ── photo treatment ────────────────────────────────────────────
+   Full-bleed photo, tinted toward the variant's ground (mix-blend color),
+   then dissolved into the page with a vertical fade. Each section tunes
+   the fade stops. */
+.cel-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.cel-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cel-photo-tint, .cel-photo-fade { position: absolute; inset: 0; transition: background .35s ease; }
+.cel-photo-tint { background: var(--cel-bg); mix-blend-mode: color; opacity: .6; }
+.cel-photo-fade {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--cel-bg) 10%, transparent) 0%,
+    color-mix(in srgb, var(--cel-bg) 45%, transparent) 32%,
+    color-mix(in srgb, var(--cel-bg) 88%, transparent) 58%,
+    var(--cel-bg) 100%);
+}
+.cel-photo-credit {
+  position: absolute;
+  right: 32px;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
   text-decoration: none;
-  font-family: var(--font-heading);
-  font-size: 15px;
-  padding: 12px 26px;
-  border-radius: 999px;
 }
-.cel-btn-primary {
-  background: var(--cel-accent);
-  color: var(--cel-accent-ink);
-  transition: filter .2s ease;
-}
-.cel-btn-primary:hover { filter: brightness(1.08); color: var(--cel-accent-ink); }
-.cel-btn-outline {
-  border: 1.5px solid var(--cel-border);
-  color: var(--cel-fg);
-  transition: border-color .2s ease, color .2s ease;
-}
-.cel-btn-outline:hover { border-color: var(--cel-accent); color: var(--cel-fg); }
+.cel-photo-credit:hover { color: var(--cel-muted); }
 
-/* — hero — */
-.cel-hero {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 56px;
-  align-items: center;
+/* ── home · hero ────────────────────────────────────────────── */
+.cel-hero { position: relative; overflow: hidden; padding: 24px 32px 64px; }
+.cel-hero .cel-photo-fade {
+  background: linear-gradient(180deg,
+    var(--cel-bg) 0%,
+    color-mix(in srgb, var(--cel-bg) 35%, transparent) 26%,
+    color-mix(in srgb, var(--cel-bg) 78%, transparent) 62%,
+    var(--cel-bg) 100%);
 }
-.cel-eyebrow {
-  display: inline-flex;
+.cel-hero-rail {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  bottom: 0;
+  width: 32px;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  border: 1px solid var(--cel-border);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 600;
+  justify-content: center;
+  z-index: 1;
+}
+.cel-hero-rail span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
+  white-space: nowrap;
+}
+.cel-hero-inner { max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
+.cel-counter { display: flex; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+.cel-counter-num { font-family: var(--font-heading); font-size: 30px; color: var(--cel-fg); }
+.cel-counter-of { font-size: 13px; color: var(--cel-faint); }
+.cel-counter-rule { width: 72px; height: 1px; background: var(--cel-border); align-self: center; }
+.cel-counter-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
   color: var(--cel-muted);
-  margin-bottom: 22px;
 }
-.cel-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--cel-accent); }
-.cel-h1 {
-  font-size: 60px;
-  margin: 0 0 18px;
+.cel-wordmark {
+  font-family: var(--font-heading);
+  font-size: clamp(110px, 16.5vw, 236px);
+  line-height: .86;
+  letter-spacing: -.025em;
+  margin-left: -.035em;
   color: var(--cel-fg);
-  line-height: 1.04;
-  text-wrap: balance;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
 }
-.cel-lede {
+.cel-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: start;
+}
+.cel-hero-copy { padding-top: 36px; }
+.cel-hero-copy .cel-kicker { margin-bottom: 14px; }
+.cel-hero-copy p {
   font-size: 17px;
   line-height: 1.65;
-  color: var(--cel-muted);
-  max-width: 52ch;
+  color: var(--cel-fg);
+  max-width: 40ch;
+  margin-bottom: 26px;
   text-wrap: pretty;
 }
-.cel-cta { display: flex; gap: 12px; margin-top: 26px; align-items: center; flex-wrap: wrap; }
-.cel-hero-art { position: relative; display: flex; justify-content: center; }
-.cel-hero-glow {
-  position: absolute;
-  inset: -30px -10px;
-  background: radial-gradient(closest-side, var(--cel-alt), transparent 72%);
-  border-radius: 999px;
+.cel-nums { display: flex; align-items: baseline; gap: 22px; margin-top: 56px; }
+.cel-num {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  color: var(--cel-faint);
+  transition: font-size .25s ease, color .25s ease;
 }
-.cel-hero-tile {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  max-width: 100%;
-  /* drop-shadow, not box-shadow: the tile art is inset inside transparent
-     padding, so a box shadow would float off its edge. */
-  filter: drop-shadow(var(--cel-shadow-lg-drop));
-}
+.cel-num::after { content: ''; display: block; width: 0; height: 1.5px; background: var(--cel-accent); transition: width .3s ease; }
+.cel-num:hover { color: var(--cel-fg); }
+.cel-num.is-active { font-size: 24px; color: var(--cel-fg); }
+.cel-num.is-active::after { width: 56px; }
+.cel-hero-term { position: relative; margin-top: -12px; padding-left: min(96px, 8vw); }
 
-/* — terminal — */
-.cel-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
 .cel-term {
   background: var(--cel-surface);
   border: 1px solid var(--cel-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--cel-shadow-lg);
   overflow: hidden;
+  transition: background .35s ease;
 }
-.cel-term-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--cel-border);
-}
+.cel-term-bar { display: flex; align-items: center; gap: 8px; padding: 14px 20px; border-bottom: 1px solid var(--cel-border); }
 .cel-term-dot { width: 12px; height: 12px; border-radius: 999px; }
-.cel-term-title { margin-left: 12px; font-size: 12px; color: var(--cel-faint); }
-.cel-term-body {
-  padding: 24px 26px;
-  font-size: 14px;
-  line-height: 1.75;
-  overflow-x: auto;
+.cel-term-title { margin-left: auto; font-size: 12px; color: var(--cel-faint); white-space: nowrap; }
+.cel-term-body { padding: 24px 26px; font-size: 13.5px; line-height: 1.75; overflow-x: auto; }
+.cel-scroll-hint {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cel-faint);
 }
-.cel-caption { margin: 14px 4px 0; font-size: 13px; color: var(--cel-faint); }
 
-/* — section headings — */
-.cel-h2 { font-size: 34px; color: var(--cel-fg); margin: 0 0 8px; }
-.cel-section-lede { color: var(--cel-muted); margin: 0 0 28px; text-wrap: pretty; }
-
-/* — variant cards — */
-.cel-variants { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.cel-vcard {
+/* ── home · four grades ─────────────────────────────────────────
+   Each card is painted in its *own* variant (--g-* set by main.js from the
+   palette), not the current one — that's the point of the strip. */
+.cel-grades { display: grid; grid-template-columns: repeat(4, 1fr); }
+.cel-grade {
   cursor: pointer;
   text-align: left;
   font-family: var(--font-body);
-  background: var(--cel-surface);
-  border: 1.5px solid var(--cel-border);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  color: var(--cel-fg);
-  transition: border-color .2s ease;
+  border: none;
+  padding: 36px 30px 40px;
+  background: var(--g-bg, var(--cel-surface));
+  color: var(--g-fg, var(--cel-fg));
+  box-shadow: inset 0 0 0 3px transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 340px;
+  transition: box-shadow .25s ease;
 }
-.cel-vcard:hover { border-color: var(--cel-accent); }
-.cel-vcard.is-active { border-color: var(--cel-accent); }
-.cel-swatches { display: flex; gap: 6px; margin-bottom: 14px; }
-.cel-sw { width: 22px; height: 22px; border-radius: 999px; border: 1px solid transparent; }
-.cel-vcard-slug { font-family: var(--font-heading); font-size: 19px; }
-.cel-vcard-kind { font-size: 13px; color: var(--cel-muted); margin-top: 4px; }
-.cel-vcard-use { font-size: 13px; color: var(--cel-faint); }
+.cel-grade.is-active { box-shadow: inset 0 0 0 3px var(--g-accent, var(--cel-accent)); }
+.cel-grade-head { display: flex; justify-content: space-between; align-items: baseline; color: var(--g-accent, var(--cel-accent)); }
+.cel-grade-num { font-family: var(--font-heading); font-size: 54px; line-height: 1; }
+.cel-grade-current { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; visibility: hidden; }
+.cel-grade.is-active .cel-grade-current { visibility: visible; }
+.cel-grade-name { font-family: var(--font-heading); font-size: 24px; }
+.cel-grade-kind { font-size: 13px; color: var(--g-muted, var(--cel-muted)); margin-top: 4px; }
+.cel-grade-status {
+  margin-top: auto;
+  font-size: 12.5px;
+  line-height: 1.8;
+  border-top: 1px solid var(--g-border, var(--cel-border));
+  padding-top: 16px;
+}
+.cel-grade .g-accent { color: var(--g-accent); }
+.cel-grade .g-faint { color: var(--g-faint); }
+.cel-grade .g-red { color: var(--g-red); }
+.cel-grade .g-green { color: var(--g-green); }
+.cel-grade .g-yellow { color: var(--g-yellow); }
+.cel-grade .g-blue { color: var(--g-blue); }
+.cel-grade .g-cyan { color: var(--g-cyan); }
 
-/* — "generated" band — */
+/* ── home · generated ───────────────────────────────────────── */
+.cel-generated {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+.cel-generated .cel-kicker { margin-bottom: 16px; }
+.cel-generated .cel-h2 { margin-bottom: 20px; }
+.cel-generated .cel-prose { max-width: 46ch; margin-bottom: 20px; }
+.cel-features { display: grid; border-top: 1px solid var(--cel-border); }
+.cel-feature { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 26px 0; border-bottom: 1px solid var(--cel-border); }
+.cel-feature-icon { font-family: var(--font-heading); font-size: 26px; line-height: 1; }
+.cel-feature strong { color: var(--cel-fg); font-size: 17px; display: block; margin-bottom: 4px; }
+.cel-feature span { color: var(--cel-muted); line-height: 1.6; }
+
+/* ── home · install band ────────────────────────────────────── */
 .cel-band {
   background: var(--cel-surface);
   border-top: 1px solid var(--cel-border);
   border-bottom: 1px solid var(--cel-border);
+  transition: background .35s ease;
 }
-.cel-gen { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
-.cel-gen-copy { color: var(--cel-muted); line-height: 1.65; text-wrap: pretty; }
-.cel-gen-list { display: grid; gap: 14px; }
-.cel-feature {
-  display: flex;
-  gap: 16px;
-  align-items: start;
+.cel-band > .cel-container { padding-top: 80px; padding-bottom: 80px; }
+.cel-section-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; flex-wrap: wrap; }
+.cel-section-head .cel-kicker { margin-bottom: 14px; }
+.cel-section-head .cel-prose { max-width: 44ch; }
+.cel-installs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.cel-install {
   background: var(--cel-bg);
   border: 1px solid var(--cel-border);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background .35s ease;
 }
-.cel-feature-badge {
-  flex: none;
-  width: 38px;
-  height: 38px;
+.cel-install-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cel-install-app { font-family: var(--font-heading); font-size: 20px; color: var(--cel-fg); }
+.cel-copy-btn {
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--cel-border);
+  background: transparent;
+  color: var(--cel-muted);
+  transition: color .2s ease, border-color .2s ease;
+}
+.cel-copy-btn:hover, .cel-copy-btn.is-copied { color: var(--cel-fg); border-color: var(--cel-accent); }
+.cel-install pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--cel-fg);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.cel-install-then { font-size: 13px; color: var(--cel-faint); }
+
+/* ── home · ports teaser ────────────────────────────────────── */
+.cel-teaser {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+.cel-teaser .cel-kicker { margin-bottom: 16px; }
+.cel-teaser .cel-h2 { margin-bottom: 20px; }
+.cel-teaser .cel-prose { max-width: 42ch; margin-bottom: 26px; }
+.cel-chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.cel-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cel-fg);
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: 999px;
+  padding: 14px 22px 14px 16px;
+  transition: border-color .2s ease;
+}
+.cel-chip:hover { border-color: var(--cel-accent); color: var(--cel-fg); }
+.cel-chip-glyph {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--cel-accent);
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
   background: var(--cel-alt);
   display: grid;
   place-items: center;
 }
-.cel-feature strong { color: var(--cel-fg); }
-.cel-feature span.body { color: var(--cel-muted); }
-
-/* — ports directory — */
-.cel-ports-intro { max-width: 58ch; margin: 0 0 8px; }
-.cel-portgroup { margin-top: 44px; }
-.cel-portgroup-title {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.cel-wish {
+  font-size: 14px;
+  font-weight: 600;
   color: var(--cel-faint);
-  margin: 0 0 16px;
-}
-.cel-ports { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.cel-port {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--cel-fg);
-  background: var(--cel-surface);
-  border: 1.5px solid var(--cel-border);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  transition: border-color .2s ease;
-}
-.cel-port:hover { border-color: var(--cel-accent); color: var(--cel-fg); }
-.cel-port-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.cel-port-name { font-family: var(--font-heading); font-size: 19px; }
-.cel-port-arrow { color: var(--cel-muted); transition: color .2s ease, transform .2s ease; }
-.cel-port:hover .cel-port-arrow { color: var(--cel-accent); transform: translateX(3px); }
-.cel-port-desc { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--cel-muted); }
-.cel-port-desc .cel-mono { color: var(--cel-fg); font-size: 12.5px; }
-.cel-port-planned { cursor: default; opacity: 0.72; }
-.cel-port-planned:hover { border-color: var(--cel-border); }
-.cel-port-tag {
-  flex: none;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--cel-faint);
-  border: 1px solid var(--cel-border);
+  border: 1.5px dashed var(--cel-border);
   border-radius: 999px;
-  padding: 3px 9px;
+  padding: 14px 22px;
 }
 
-/* — palette page — */
-.cel-palette-head { max-width: 64ch; margin-bottom: 40px; }
-.cel-palette-section { margin-bottom: 48px; }
-.cel-palette-section:last-of-type { margin-bottom: 0; }
-.cel-swgrid { display: grid; gap: 14px; }
-.cel-swgrid-field { grid-template-columns: repeat(4, 1fr); }
-.cel-swgrid-ansi { grid-template-columns: repeat(6, 1fr); }
-.cel-swcard {
+/* ── footer ─────────────────────────────────────────────────── */
+.cel-footer { position: relative; overflow: hidden; border-top: 1px solid var(--cel-border); }
+.cel-footer-bar {
+  padding-top: 36px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--cel-faint);
+}
+.cel-footer-links { display: flex; gap: 28px; }
+.cel-footer-links a { color: var(--cel-muted); text-decoration: none; }
+.cel-footer-links a:hover { color: var(--cel-fg); }
+/* The giant wordmark bleeds off the bottom on purpose (footer clips it). */
+.cel-footer-mark {
+  font-family: var(--font-heading);
+  font-size: clamp(120px, 19vw, 300px);
+  line-height: .78;
+  letter-spacing: -.025em;
+  color: var(--cel-alt);
+  margin: 16px 0 -.24em -.035em;
+  user-select: none;
+  transition: color .35s ease;
+}
+
+/* ── page header (Ports, Contribute) ────────────────────────── */
+.cel-pagehead { position: relative; isolation: isolate; margin: -40px 0 64px; padding: 190px 0 56px; }
+.cel-pagehead .cel-photo {
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+.cel-pagehead .cel-kicker-rule { margin-bottom: 10px; }
+.cel-title {
+  font-family: var(--font-heading);
+  font-size: clamp(80px, 11vw, 150px);
+  line-height: .88;
+  letter-spacing: -.025em;
+  margin: 0 0 22px -.035em;
+  color: var(--cel-fg);
+}
+.cel-pagehead .cel-lede { max-width: 58ch; }
+
+/* ── palette · hero + swatch stack ──────────────────────────── */
+.cel-phero { position: relative; overflow: hidden; }
+.cel-phero-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 190px 32px 56px;
+  display: grid;
+  grid-template-columns: 1fr 372px;
+  gap: 64px;
+  align-items: start; /* title lands at the same height as Ports/Contribute; the stack hangs below */
+}
+.cel-phero .cel-kicker-rule { margin-bottom: 10px; }
+.cel-title-lg { font-size: clamp(84px, 12vw, 168px); line-height: .86; margin-bottom: 24px; }
+.cel-phero .cel-lede { max-width: 46ch; }
+.cel-phero .cel-lede .cel-mono { font-size: 14px; color: var(--cel-fg); }
+
+.cel-stack { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--cel-shadow-lg); display: grid; }
+.cel-tile {
   cursor: pointer;
+  border: none;
   text-align: left;
   width: 100%;
   font-family: var(--font-body);
-  color: var(--cel-fg);
-  background: var(--cel-surface);
-  border: 1px solid var(--cel-border);
-  border-radius: var(--radius-md);
-  padding: 10px;
-  transition: border-color .2s ease;
-}
-.cel-swcard:hover { border-color: var(--cel-accent); }
-.cel-chip { display: block; width: 100%; border-radius: var(--radius-sm); margin-bottom: 10px; }
-.cel-chip-lg { height: 64px; border: 1px solid var(--cel-border); }
-.cel-chip-sm { height: 52px; }
-.cel-swmeta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 0 4px 4px; }
-.cel-swmeta-stack { display: block; padding: 0 4px 4px; }
-.cel-swname { display: block; font-weight: 700; font-size: 14px; }
-.cel-swname-sm { display: block; font-weight: 700; font-size: 13.5px; }
-.cel-swdesc { display: block; font-size: 12px; color: var(--cel-faint); }
-.cel-swdesc-ansi { display: block; font-size: 11.5px; color: var(--cel-faint); min-height: 2.4em; }
-.cel-hex { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: var(--cel-faint); }
-.cel-swmeta-stack .cel-hex { display: block; }
-.cel-hex.is-copied { color: var(--cel-accent); }
-.cel-palette-note {
-  margin-top: 36px;
-  background: var(--cel-surface);
-  border: 1px solid var(--cel-border);
-  border-radius: var(--radius-md);
-  padding: 20px 24px;
+  min-height: 60px;
+  padding: 16px 22px;
   display: flex;
-  gap: 16px;
-  align-items: start;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background .35s ease, filter .2s ease;
 }
-.cel-palette-note-badge {
-  flex: none;
-  width: 38px;
-  height: 38px;
+.cel-tile:hover { filter: brightness(1.05); }
+.cel-tile-bg { min-height: 112px; }
+.cel-tile-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.cel-tile-top img { width: 34px; height: 34px; border-radius: 9px; }
+.cel-tile-variant { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+.cel-tile-row { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; width: 100%; }
+.cel-tile-role { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.cel-tile-meta { font-family: var(--font-mono); font-size: 13px; display: flex; gap: 14px; }
+.cel-tile-lc { opacity: .65; }
+
+/* ── palette · spectrum ─────────────────────────────────────── */
+.cel-spectrum-wrap { padding-top: 56px; }
+.cel-spectrum { height: 14px; border-radius: 999px; transition: background .35s ease; }
+.cel-spectrum-labels { display: flex; justify-content: space-between; margin-top: 12px; }
+
+/* ── palette · accents ──────────────────────────────────────── */
+.cel-accents-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: end;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+.cel-accents-intro .cel-kicker { margin-bottom: 16px; }
+.cel-accents-intro .cel-prose { max-width: 46ch; margin-bottom: 8px; }
+.cel-accents-band { position: relative; overflow: hidden; min-height: 560px; display: flex; align-items: center; }
+.cel-accents-band .cel-photo-fade {
+  background: linear-gradient(180deg,
+    var(--cel-bg) 0%,
+    color-mix(in srgb, var(--cel-bg) 30%, transparent) 22%,
+    color-mix(in srgb, var(--cel-bg) 30%, transparent) 78%,
+    var(--cel-bg) 100%);
+}
+.cel-accents {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 72px 32px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.cel-accent {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--cel-fg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  transition: transform .2s ease;
+}
+.cel-accent:hover { transform: translateY(-4px); }
+/* Fill = the accent, the 14px ring = its bright variant (what bold text gets). */
+.cel-accent-ring {
+  width: min(150px, 100%);
+  aspect-ratio: 1;
   border-radius: 999px;
+  border: 14px solid;
+  box-shadow: var(--cel-shadow-lg);
+  transition: background .35s ease, border-color .35s ease;
+}
+.cel-accent-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--cel-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+}
+.cel-accent-name { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.cel-accent-hex { font-family: var(--font-mono); font-size: 12.5px; }
+.cel-accent-bright { font-family: var(--font-mono); font-size: 11px; color: var(--cel-muted); }
+
+/* ── palette · spec table ───────────────────────────────────── */
+.cel-spec { padding-top: 88px; padding-bottom: 96px; }
+.cel-spec-scroll { overflow-x: auto; }
+.cel-spec-table { min-width: 760px; }
+.cel-spec-head, .cel-spec-row {
+  display: grid;
+  grid-template-columns: 64px 1.3fr 1fr 1.1fr 1.5fr .7fr;
+  gap: 16px;
+  align-items: center;
+}
+.cel-spec-head { padding: 0 20px 14px; border-bottom: 1px solid var(--cel-border); }
+.cel-spec-row {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--cel-border);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cel-fg);
+  padding: 14px 20px;
+  transition: background .2s ease;
+}
+.cel-spec-row:hover { background: var(--cel-surface); }
+.cel-spec-swatch { width: 40px; height: 40px; border-radius: 999px; box-shadow: var(--cel-shadow-md); }
+.cel-spec-role { font-family: var(--font-body); font-weight: 700; font-size: 15px; }
+.cel-spec-desc { display: block; font-family: var(--font-body); font-size: 12px; color: var(--cel-faint); }
+.cel-spec-dim { color: var(--cel-muted); white-space: pre; }
+.cel-spec-lc { text-align: right; }
+.cel-spec-hex.is-copied { color: var(--cel-accent); }
+.lc-good { color: var(--cel-green); }
+.lc-ok { color: var(--cel-yellow); }
+.lc-low { color: var(--cel-faint); }
+.cel-spec-right { text-align: right; }
+
+/* ── ports ──────────────────────────────────────────────────── */
+.cel-section { margin-bottom: 48px; }
+.cel-section > .cel-h2-plain { margin-bottom: 20px; }
+.cel-portgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.cel-port {
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background .35s ease;
+}
+.cel-port-head { display: flex; align-items: center; gap: 14px; }
+.cel-port-glyph {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   background: var(--cel-alt);
   display: grid;
   place-items: center;
   color: var(--cel-accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
 }
-.cel-palette-note p { margin: 0; color: var(--cel-muted); font-size: 14px; line-height: 1.6; text-wrap: pretty; }
-@media (max-width: 900px) {
-  .cel-swgrid-field { grid-template-columns: repeat(3, 1fr); }
-  .cel-swgrid-ansi { grid-template-columns: repeat(4, 1fr); }
+.cel-port-title { flex: 1; }
+.cel-port-name { font-family: var(--font-heading); font-size: 19px; color: var(--cel-fg); }
+.cel-port-kind { font-size: 12.5px; color: var(--cel-faint); }
+.cel-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--cel-alt);
+  color: var(--cel-accent);
+  white-space: nowrap;
 }
-@media (max-width: 640px) {
-  .cel-swgrid-field { grid-template-columns: repeat(2, 1fr); }
-  .cel-swgrid-ansi { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 400px) {
-  .cel-swgrid-ansi { grid-template-columns: repeat(2, 1fr); }
-}
+.cel-tag-wip { color: var(--cel-yellow); }
+.cel-port-desc { font-size: 14px; line-height: 1.6; color: var(--cel-muted); text-wrap: pretty; }
+.cel-port-foot { margin-top: auto; padding-top: 6px; }
 
-/* — footer — */
-.cel-footer-bar {
-  display: flex;
+.cel-panel {
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-lg);
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 40px;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  transition: background .35s ease;
+}
+.cel-panel h2 { font-size: 40px; letter-spacing: -.015em; line-height: 1; color: var(--cel-fg); margin-bottom: 10px; }
+.cel-panel .cel-prose { margin-bottom: 18px; }
+.cel-wishlist { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.cel-wishlist span {
   font-size: 13px;
-  color: var(--cel-faint);
+  font-weight: 600;
+  color: var(--cel-muted);
+  border: 1.5px dashed var(--cel-border);
+  border-radius: 999px;
+  padding: 8px 16px;
 }
-.cel-footer-links { display: flex; gap: 18px; }
-.cel-footer-links a { color: var(--cel-muted); }
 
-/* — simple centered page (placeholders / 404) — */
+/* ── contribute ─────────────────────────────────────────────── */
+.cel-steps { display: grid; gap: 16px; max-width: 840px; margin-bottom: 52px; }
+.cel-step {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  transition: background .35s ease;
+}
+.cel-step-num {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--cel-accent);
+  color: var(--cel-accent-ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-size: 18px;
+}
+.cel-step h3 { font-size: 19px; color: var(--cel-fg); margin: 2px 0 6px; }
+.cel-step p { font-size: 14.5px; line-height: 1.65; color: var(--cel-muted); text-wrap: pretty; }
+.cel-step pre {
+  margin: 12px 0 0;
+  background: var(--cel-bg);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-sm);
+  padding: 13px 15px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--cel-fg);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.cel-step-link { margin-top: 10px; }
+.cel-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 840px; }
+.cel-rule {
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  transition: background .35s ease;
+}
+.cel-rule h3 { font-size: 17px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.cel-rule-do h3 { color: var(--cel-green); }
+.cel-rule-dont h3 { color: var(--cel-red); }
+.cel-rule ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.9; color: var(--cel-muted); }
+.cel-rule .cel-mono { font-size: 12.5px; }
+.cel-panel-sm {
+  background: var(--cel-surface);
+  border: 1px solid var(--cel-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  max-width: 840px;
+  transition: background .35s ease;
+}
+.cel-panel-sm h2 { font-size: 34px; letter-spacing: -.01em; color: var(--cel-fg); margin-bottom: 8px; }
+.cel-panel-sm .cel-prose { margin-bottom: 20px; }
+
+/* ── 404 ────────────────────────────────────────────────────── */
 .cel-simple { max-width: 640px; margin: 0 auto; padding: 96px 32px 120px; text-align: center; }
-.cel-simple h1 { font-size: 46px; color: var(--cel-fg); margin: 0 0 14px; line-height: 1.06; }
-.cel-simple p { color: var(--cel-muted); font-size: 17px; line-height: 1.6; margin: 0 auto 28px; max-width: 46ch; }
+.cel-simple h1 { font-size: 46px; color: var(--cel-fg); margin-bottom: 14px; line-height: 1.06; }
+.cel-simple p { margin: 0 auto 28px; max-width: 46ch; }
 
-/* ── responsive ─────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .cel-hero { grid-template-columns: 1fr; gap: 36px; }
-  .cel-hero-art { order: -1; }
-  .cel-gen { grid-template-columns: 1fr; gap: 32px; }
-  .cel-variants { grid-template-columns: repeat(2, 1fr); }
-  .cel-ports { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 720px) {
-  .cel-h1 { font-size: 46px; }
-  .cel-h2 { font-size: 28px; }
-}
-@media (max-width: 560px) {
-  .cel-container { padding-left: 20px; padding-right: 20px; }
-  .cel-variants { grid-template-columns: 1fr; }
-  .cel-ports { grid-template-columns: 1fr; }
-  .cel-h1 { font-size: 38px; }
-  .cel-footer-bar { flex-direction: column; align-items: flex-start; }
-  .cel-nav { gap: 16px; }
+/* ── responsive ───────────────────────────────────────────────
+   One breakpoint, per the design: below 860px the nav stacks into three
+   rows, every 2-col grid becomes 1-col, the grades strip 2-col, the accent
+   circles 3-col, and the spec table drops its RGB/OKLCH columns. */
+@media (max-width: 860px) {
+  .cel-container, .cel-hero { padding-left: 20px; padding-right: 20px; }
+  .cel-main-pad { padding-top: 40px; }
+
+  /* nav: brand → full-width switcher → link row */
+  .cel-nav { gap: 12px; padding-top: 16px; padding-bottom: 12px; }
+  .cel-navlinks { order: 3; width: 100%; justify-content: space-between; gap: 12px; }
+  .cel-navlink { font-size: 11px; }
+  .cel-switch { order: 2; width: 100%; }
+  .cel-vpill { flex: 1; padding: 7px 6px; font-size: 11.5px; }
+
+  /* grids */
+  .cel-hero-grid, .cel-generated, .cel-installs, .cel-teaser, .cel-phero-grid,
+  .cel-accents-intro, .cel-portgrid, .cel-panel, .cel-rules { grid-template-columns: 1fr; gap: 28px; }
+  .cel-grades { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cel-grade { padding: 26px 20px 30px; min-height: 0; }
+  .cel-grade-num { font-size: 44px; }
+  .cel-accents { grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 44px 20px; }
+  .cel-accent-ring { border-width: 9px; }
+  .cel-accent-hex { font-size: 11px; }
+  .cel-accent-bright { display: none; }
+  .cel-feature { grid-template-columns: 40px 1fr; gap: 10px; }
+
+  /* type */
+  .cel-h2 { font-size: clamp(34px, 9vw, 44px); }
+  .cel-h2-sm { font-size: clamp(32px, 8.5vw, 40px); }
+  .cel-wordmark, .cel-title { font-size: clamp(56px, 17vw, 72px); line-height: .9; overflow-wrap: break-word; }
+  .cel-title-nowrap { font-size: clamp(44px, 14.5vw, 72px); white-space: nowrap; }
+  .cel-footer-mark { font-size: clamp(72px, 22vw, 120px); }
+  .cel-kicker-rule { white-space: nowrap; }
+  .cel-kicker-rule::before { display: none; }
+  .cel-counter { flex-wrap: wrap; }
+
+  /* home hero */
+  .cel-hero-rail { display: none; }
+  .cel-hero-term { padding-left: 0; margin-top: 8px; }
+  .cel-term-body { padding: 16px 18px; font-size: 12.5px; }
+  .cel-install { padding: 16px 18px; }
+  .cel-section-head { flex-direction: column; align-items: flex-start; }
+
+  /* page headers: text sits higher over the photo, so the fade is stronger */
+  .cel-pagehead { padding: 70px 0 36px; }
+  .cel-pagehead .cel-photo-fade {
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--cel-bg) 55%, transparent) 0%,
+      color-mix(in srgb, var(--cel-bg) 85%, transparent) 40%,
+      var(--cel-bg) 70%);
+  }
+  .cel-phero-grid { padding: 70px 20px 36px; }
+  .cel-phero .cel-photo-fade {
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--cel-bg) 60%, transparent) 0%,
+      color-mix(in srgb, var(--cel-bg) 88%, transparent) 26%,
+      var(--cel-bg) 48%);
+  }
+  .cel-photo-credit { right: 20px; }
+
+  /* palette */
+  .cel-tile-row { flex-wrap: wrap; }
+  .cel-spectrum-labels span:nth-child(2) { display: none; }
+  .cel-accents-intro { padding: 56px 20px 24px; }
+  .cel-spec { padding: 56px 20px 64px; }
+  .cel-spec-table { min-width: 0; }
+  .cel-spec-head, .cel-spec-row { grid-template-columns: 40px 1.4fr 1fr .6fr; gap: 10px; padding-left: 8px; padding-right: 8px; }
+  .cel-spec-wide { display: none; }
+  .cel-spec-swatch { width: 28px; height: 28px; }
+  .cel-spec-lc, .cel-spec-right { white-space: nowrap; }
+
+  /* cards + panels */
+  .cel-port, .cel-step, .cel-rule { padding: 18px 16px; }
+  .cel-port-head { flex-wrap: wrap; }
+  .cel-port-title { flex-basis: calc(100% - 58px); min-width: 0; }
+  .cel-panel { padding: 28px 22px; }
+  .cel-panel-sm { padding: 26px 22px; }
+  .cel-step { gap: 14px; }
+  .cel-step > div { min-width: 0; }
+  .cel-step-num { width: 34px; height: 34px; font-size: 15px; }
+  .cel-step pre { font-size: 11px; word-break: break-all; }
+  .cel-install pre { word-break: break-all; }
+
+  .cel-footer-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
 }

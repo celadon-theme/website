@@ -4,13 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contribute — Celadon</title>
-<meta name="description" content="Submit a Celadon port or help improve the theme. Coming soon.">
-<link rel="icon" type="image/svg+xml" href="/assets/brand/celadon-favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/celadon-favicon-32.png">
-<link rel="apple-touch-icon" href="/assets/brand/celadon-favicon-180.png">
+<meta name="description" content="Bring Celadon somewhere new. How to build and submit a port: start from the JSON palette, map roles not colors, cover all four variants, screenshot each, open a PR.">
+<meta property="og:title" content="Contribute — Celadon">
+<meta property="og:description" content="How to build and submit a Celadon port: JSON palette in, all four variants out.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://celadontheme.com/contribute">
+<meta property="og:image" content="https://celadontheme.com/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://celadontheme.com/contribute">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#131b11">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/src/styles/ds.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <script src="/celadon-theme.js"></script>
@@ -18,41 +28,127 @@
 <body>
 <div class="cel-page">
 
-<nav class="cel-nav cel-container" style="padding-top:22px;padding-bottom:22px" aria-label="Primary">
+<nav class="cel-nav cel-container" aria-label="Primary">
   <a href="/" class="cel-brand">
-    <img src="/assets/brand/celadon-favicon.svg" alt="" width="38" height="38" class="cel-brand-mark">
+    <img src="/brand/celadon-logo.svg" alt="" width="34" height="34" class="cel-brand-mark">
     <span class="cel-brand-name">Celadon</span>
   </a>
   <div class="cel-navlinks">
     <a href="/" class="cel-navlink">Home</a>
-    <a href="/palette.html" class="cel-navlink">Palette</a>
-    <a href="/ports.html" class="cel-navlink">Ports</a>
-    <a href="/contribute.html" class="cel-navlink is-active" aria-current="page">Contribute</a>
+    <a href="/palette" class="cel-navlink">Palette</a>
+    <a href="/ports" class="cel-navlink">Ports</a>
+    <a href="/contribute" class="cel-navlink is-active" aria-current="page">Contribute</a>
   </div>
   <div class="cel-switch" role="group" aria-label="Theme variant">
-    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon" aria-pressed="false" title="dark · medium contrast">Celadon</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
   </div>
 </nav>
 
-<main class="cel-main">
-  <section class="cel-simple">
-    <h1>Contribute</h1>
-    <p>Submit a port, tighten a gate, or file a palette issue. The submission flow is on its way — until then, open a pull request on GitHub.</p>
-    <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener" class="cel-btn-primary">Open GitHub</a>
+<main class="cel-main cel-container cel-main-pad">
+
+  <section class="cel-pagehead">
+    <div class="cel-photo" aria-hidden="true">
+      <img src="/photos/moss-floor.jpg" alt="" fetchpriority="high" decoding="async" style="object-position:center 60%">
+      <div class="cel-photo-tint"></div>
+      <div class="cel-photo-fade"></div>
+    </div>
+    <a href="https://unsplash.com/@betagamma" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Daniil Silantev / Unsplash</a>
+    <div class="cel-kicker-rule">Contribute &middot; submit a port</div>
+    <h1 class="cel-title cel-title-nowrap">Contribute</h1>
+    <p class="cel-lede">A port is usually an afternoon of work: read the palette, emit a config, screenshot it. Chrome themes, editors, window managers, launchers &mdash; if it takes colors, we want it. Here's the path from idea to listed port.</p>
   </section>
+
+  <section class="cel-steps" aria-label="Steps">
+    <div class="cel-step">
+      <span class="cel-step-num">1</span>
+      <div>
+        <h3>Start from the JSON palette</h3>
+        <p>One file per variant, every role named &mdash; slug &rarr; role &rarr; hex. This is the source of truth; build your emitter against it so your port regenerates when the family does.</p>
+        <pre>curl -O https://raw.githubusercontent.com/celadon-theme/celadon-theme/main/ports/json/celadon.json</pre>
+        <div class="cel-step-link"><a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/json" target="_blank" rel="noopener" class="cel-link">Browse ports/json &rarr;</a></div>
+      </div>
+    </div>
+    <div class="cel-step">
+      <span class="cel-step-num">2</span>
+      <div>
+        <h3>Map roles, not colors</h3>
+        <p>Match Celadon roles to your app's slots by meaning: bg to the field, fg to body text, red to errors and deletions, green to success. If the app speaks ANSI, use the slot numbers and skip hexes entirely &mdash; the oh-my-posh port works this way.</p>
+      </div>
+    </div>
+    <div class="cel-step">
+      <span class="cel-step-num">3</span>
+      <div>
+        <h3>Cover all four variants</h3>
+        <p>Sky, powder, celadon, jade &mdash; one graded family, light to dark. A port that ships one variant leaves most rooms out.</p>
+      </div>
+    </div>
+    <div class="cel-step">
+      <span class="cel-step-num">4</span>
+      <div>
+        <h3>Screenshot each variant</h3>
+        <p>Same content in every shot, so the grading reads. A diff and some test output show the honest ANSI story better than a wall of syntax.</p>
+      </div>
+    </div>
+    <div class="cel-step">
+      <span class="cel-step-num">5</span>
+      <div>
+        <h3>Open a PR or an issue</h3>
+        <p>Flat-file ports (a config the user copies) go under <span class="cel-mono">ports/&lt;app&gt;/</span> in the hub repo as a PR. Ports a plugin manager installs from a repo root &mdash; Neovim, tmux &mdash; get their own repo under the org: open an issue and we'll set one up.</p>
+        <div class="cel-step-link"><a href="https://github.com/celadon-theme/celadon-theme/issues/new/choose" target="_blank" rel="noopener" class="cel-link">Open an issue &rarr;</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cel-section">
+    <h2 class="cel-h2-plain">Ground rules</h2>
+    <div class="cel-rules">
+      <div class="cel-rule cel-rule-do">
+        <h3><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Do</h3>
+        <ul>
+          <li>Read every hex from <span class="cel-mono">ports/json</span>, by role</li>
+          <li>Ship all four variants, same content in each</li>
+          <li>Keep it colors-only &mdash; never set fonts or sizes</li>
+          <li>Use ANSI slots instead of hexes when the app allows</li>
+          <li>Include a screenshot per variant in your PR</li>
+        </ul>
+      </div>
+      <div class="cel-rule cel-rule-dont">
+        <h3><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>Don't</h3>
+        <ul>
+          <li>Hand-tune a hex, even one &mdash; fixes go through the generator</li>
+          <li>Eyedrop colors from screenshots</li>
+          <li>Swap accent meanings (red must stay red)</li>
+          <li>Add colors the palette doesn't define</li>
+          <li>Skip a variant because "nobody uses light"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cel-panel-sm">
+    <h2>Not up for building one?</h2>
+    <p class="cel-prose">Issues are the most useful thing right now &mdash; port requests, color problems, screenshots of Celadon in the wild. Flat-file ports are one small emitter each, so asking is usually enough.</p>
+    <div class="cel-btn-group">
+      <a href="https://github.com/celadon-theme/celadon-theme/issues/new/choose" target="_blank" rel="noopener" class="cel-btn cel-btn-display cel-btn-accent">Open an issue</a>
+      <a href="https://github.com/celadon-theme/celadon-theme/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="cel-btn cel-btn-display cel-btn-outline">CONTRIBUTING.md</a>
+      <a href="https://github.com/celadon-theme/celadon-theme/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener" class="cel-btn cel-btn-display cel-btn-outline">Code of conduct</a>
+    </div>
+  </section>
+
 </main>
 
-<footer style="border-top:1px solid var(--cel-border)">
-  <div class="cel-container cel-footer-bar" style="padding-top:26px;padding-bottom:26px">
-    <span>Celadon · MIT license · named for the pale grey-green ceramic glaze</span>
+<footer class="cel-footer">
+  <div class="cel-container cel-footer-bar">
+    <span>MIT license &middot; named for the pale grey-green glaze</span>
     <span class="cel-footer-links">
       <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener">GitHub</a>
-      <a href="/contribute.html">Contribute</a>
+      <a href="/contribute">Contribute</a>
     </span>
   </div>
+  <div class="cel-container"><div class="cel-footer-mark" aria-hidden="true">Celadon</div></div>
 </footer>
 
 </div>

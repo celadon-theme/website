@@ -1,93 +1,56 @@
-// Site interactivity, compiled from the design's DCLogic components. Every page
-// loads this module; each block is guarded by the elements it needs:
-// - variant switching (nav pills) — every page.
-// - Home: repaint variant-card swatches from the live palette so the static
-//   fallback hexes can't silently drift.
-// - Palette: keep the hex labels + intro slug in sync with the variant, and
-//   copy a role's hex on click.
-// celadon-theme.js has already run (blocking, in <head>) so window.CELADON exists
-// and the stored/default variant is applied before this module executes.
+// Shared interactivity, loaded by every page. celadon-theme.js has already run
+// (blocking, in <head>) so window.CELADON exists and the stored/default
+// variant is applied before this module executes.
+import { copyWithFeedback } from './clipboard.js';
 
-const C = window.CELADON;
+if (window.CELADON) init(window.CELADON);
 
-/* ── variant switching ─────────────────────────────────────── */
-const pickers = Array.from(document.querySelectorAll('[data-variant-pick]'));
-const termSlug = document.getElementById('cel-term-slug');
+function init(C) {
+  const pad = (n) => String(n).padStart(2, '0');
 
-function syncActive(name) {
-  for (const el of pickers) {
-    const on = el.dataset.variantPick === name;
-    el.classList.toggle('is-active', on);
-    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', String(on));
-  }
-  if (termSlug) termSlug.textContent = name;
-}
+  /* ── variant switching ───────────────────────────────────────
+     Anything with data-variant-pick switches the variant (nav pills, hero
+     numerals, grade cards). Anything with data-variant="slug|label|kind|num"
+     shows a fact about the current one. Other modules listen for
+     `celadon:variant` instead of wiring their own pickers. */
+  const pickers = document.querySelectorAll('[data-variant-pick]');
+  const bound = document.querySelectorAll('[data-variant]');
 
-for (const el of pickers) {
-  el.addEventListener('click', () => {
-    const name = el.dataset.variantPick;
-    if (C) C.apply(name);
-    syncActive(name);
-  });
-}
-
-// Reflect the variant celadon-theme.js restored from localStorage on load.
-if (C) syncActive(C.current());
-
-/* ── swatch paint ──────────────────────────────────────────────
-   The variant cards carry hardcoded swatch hexes as a no-JS fallback; repaint
-   them from celadon-theme.js (the single source of truth) so a palette change
-   there can't leave the cards showing stale colors. Order matches the markup:
-   [bg, fg, red, green, yellow, blue], edge = the variant's border. */
-if (C) {
-  const roles = ['bg', 'fg', 'red', 'green', 'yellow', 'blue'];
-  for (const card of document.querySelectorAll('.cel-vcard[data-variant-pick]')) {
-    const colors = C.variants[card.dataset.variantPick]?.colors;
-    if (!colors) continue;
-    card.querySelectorAll('.cel-sw').forEach((sw, i) => {
-      sw.style.background = colors[roles[i]];
-      sw.style.borderColor = colors.border;
-    });
-  }
-}
-
-/* ── palette page ──────────────────────────────────────────────
-   Swatch chips are colored with var(--cel-<role>), so they retheme for free.
-   Here we only keep the hex *labels* and the intro slug in sync with the
-   current variant, and copy the current hex when a swatch is clicked. */
-const hexEls = document.querySelectorAll('[data-hex-for]');
-if (C && hexEls.length) {
-  const slugEl = document.getElementById('cel-palette-variant');
-  let copiedTimer = null;
-
-  const paintHexes = (name) => {
-    const colors = C.variants[name]?.colors || {};
-    for (const el of hexEls) {
-      if (el.classList.contains('is-copied')) continue; // don't clobber a live "copied!"
-      el.textContent = colors[el.dataset.hexFor] || '';
+  function reflect(name) {
+    const v = C.variants[name];
+    const facts = { slug: name, label: v.label, kind: v.kind, num: pad(C.order.indexOf(name) + 1) };
+    for (const el of pickers) {
+      const on = el.dataset.variantPick === name;
+      el.classList.toggle('is-active', on);
+      if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', String(on));
     }
-    if (slugEl) slugEl.textContent = name;
-  };
+    for (const el of bound) el.textContent = facts[el.dataset.variant] ?? '';
+    document.dispatchEvent(new CustomEvent('celadon:variant', { detail: { name } }));
+  }
 
-  for (const el of pickers) el.addEventListener('click', () => paintHexes(el.dataset.variantPick));
-  paintHexes(C.current());
-
-  for (const card of document.querySelectorAll('.cel-swcard[data-role]')) {
-    card.addEventListener('click', async () => {
-      const role = card.dataset.role;
-      const label = card.querySelector('[data-hex-for]');
-      const hex = C.variants[C.current()]?.colors[role];
-      if (!hex || !label) return;
-      try {
-        await navigator.clipboard.writeText(hex);
-        clearTimeout(copiedTimer);
-        label.textContent = 'copied!';
-        label.classList.add('is-copied');
-        copiedTimer = setTimeout(() => {
-          label.classList.remove('is-copied');
-          label.textContent = C.variants[C.current()]?.colors[role] || hex;
-        }, 1400);
-      } catch { /* clipboard unavailable */ }
+  for (const el of pickers) {
+    el.addEventListener('click', () => {
+      const name = el.dataset.variantPick;
+      if (!C.variants[name]) return;
+      C.apply(name);
+      reflect(name);
     });
+  }
+  reflect(C.current());
+
+  /* ── grade cards (home) ──────────────────────────────────────
+     Each card is painted in its own variant, whatever the page is showing. */
+  const GRADE_ROLES = ['bg', 'fg', 'muted', 'faint', 'accent', 'border', 'red', 'green', 'yellow', 'blue', 'cyan'];
+  for (const card of document.querySelectorAll('.cel-grade[data-variant-pick]')) {
+    const { colors } = C.variants[card.dataset.variantPick];
+    for (const role of GRADE_ROLES) card.style.setProperty(`--g-${role}`, colors[role]);
+  }
+
+  /* ── copy buttons ────────────────────────────────────────────
+     data-copy-target is a selector for the element whose text gets copied. */
+  for (const btn of document.querySelectorAll('[data-copy-target]')) {
+    const source = document.querySelector(btn.dataset.copyTarget);
+    if (!source) continue;
+    btn.addEventListener('click', () => copyWithFeedback(btn, source.textContent, 'Copied', 'Copy'));
   }
 }
