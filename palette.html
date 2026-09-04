@@ -4,13 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Palette — Celadon</title>
-<meta name="description" content="The Celadon palette — every color role and ANSI accent, per variant. Click any swatch to copy its hex.">
-<link rel="icon" type="image/svg+xml" href="/assets/brand/celadon-favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/celadon-favicon-32.png">
-<link rel="apple-touch-icon" href="/assets/brand/celadon-favicon-180.png">
+<meta name="description" content="The Celadon palette — twenty roles per variant, generated in OKLCH and gate-checked with APCA. Hex, RGB, OKLCH and contrast for every color; click any swatch to copy its hex.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#131b11">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="/src/styles/ds.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <script src="/celadon-theme.js"></script>
@@ -18,141 +21,103 @@
 <body>
 <div class="cel-page">
 
-<nav class="cel-nav cel-container" style="padding-top:22px;padding-bottom:22px" aria-label="Primary">
+<nav class="cel-nav cel-container" aria-label="Primary">
   <a href="/" class="cel-brand">
-    <img src="/assets/brand/celadon-favicon.svg" alt="" width="38" height="38" class="cel-brand-mark">
+    <img src="/brand/celadon-logo.svg" alt="" width="34" height="34" class="cel-brand-mark">
     <span class="cel-brand-name">Celadon</span>
   </a>
   <div class="cel-navlinks">
     <a href="/" class="cel-navlink">Home</a>
-    <a href="/palette.html" class="cel-navlink is-active" aria-current="page">Palette</a>
-    <a href="/ports.html" class="cel-navlink">Ports</a>
-    <a href="/contribute.html" class="cel-navlink">Contribute</a>
+    <a href="/palette" class="cel-navlink is-active" aria-current="page">Palette</a>
+    <a href="/ports" class="cel-navlink">Ports</a>
+    <a href="/contribute" class="cel-navlink">Contribute</a>
   </div>
   <div class="cel-switch" role="group" aria-label="Theme variant">
-    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
-    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
-    <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
+    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
   </div>
 </nav>
 
-<main class="cel-main cel-container" style="padding-top:40px;padding-bottom:72px">
-  <section class="cel-palette-head">
-    <h1 style="font-size:46px;color:var(--cel-fg);margin:0 0 12px;line-height:1.06">The palette</h1>
-    <p style="font-size:16px;line-height:1.65;color:var(--cel-muted);text-wrap:pretty">Every role in <span id="cel-palette-variant" class="cel-mono" style="font-size:14px;color:var(--cel-fg)">celadon</span>, straight from the generator. Click any swatch to copy its hex. Machine-readable versions live in <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/json" target="_blank" rel="noopener">ports/json</a> — slug &rarr; role &rarr; hex, one file per variant.</p>
+<main class="cel-main">
+
+  <!-- Hero + swatch stack (stack rendered by palette.js) -->
+  <section class="cel-phero">
+    <div class="cel-photo" aria-hidden="true">
+      <img src="/photos/fern-rock.jpg" alt="">
+      <div class="cel-photo-tint"></div>
+      <div class="cel-photo-fade"></div>
+    </div>
+    <div class="cel-phero-grid">
+      <div>
+        <div class="cel-kicker-rule is-accent">The palette &middot; <span data-variant="slug">celadon</span></div>
+        <h1 class="cel-title cel-title-lg">Palette</h1>
+        <p class="cel-lede">Twenty roles, generated in OKLCH and gate-checked with APCA. Contrast is shown as <span class="cel-mono">Lc</span> against the field. Click any color to copy its hex.</p>
+      </div>
+      <div class="cel-stack" id="cel-stack" aria-label="Field colors"></div>
+    </div>
+    <a href="https://unsplash.com/@roap_oneee" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Roman Petrov / Unsplash</a>
   </section>
 
-  <section class="cel-palette-section">
-    <h2 style="font-size:26px;color:var(--cel-fg);margin:0 0 6px">The field</h2>
-    <p style="color:var(--cel-muted);margin:0 0 20px;font-size:14px">Grounds and text — the quiet part of the theme.</p>
-    <div class="cel-swgrid cel-swgrid-field">
-      <button type="button" class="cel-swcard" data-role="bg">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-bg)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">bg</span><span class="cel-swdesc">the field</span></span><span class="cel-hex" data-hex-for="bg">#131b11</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="surface">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-surface)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">surface</span><span class="cel-swdesc">panels, cards</span></span><span class="cel-hex" data-hex-for="surface">#1a2418</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="alt">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-alt)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">alt</span><span class="cel-swdesc">selection, raised chrome</span></span><span class="cel-hex" data-hex-for="alt">#232f20</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="border">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-border)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">border</span><span class="cel-swdesc">rules and edges</span></span><span class="cel-hex" data-hex-for="border">#2e3b2b</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="fg">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-fg)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">fg</span><span class="cel-swdesc">body text</span></span><span class="cel-hex" data-hex-for="fg">#c9d5c6</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="muted">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-muted)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">muted</span><span class="cel-swdesc">secondary text</span></span><span class="cel-hex" data-hex-for="muted">#939f91</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="faint">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-faint)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">faint</span><span class="cel-swdesc">comments, disabled</span></span><span class="cel-hex" data-hex-for="faint">#727e70</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="accent">
-        <span class="cel-chip cel-chip-lg" style="background:var(--cel-accent)"></span>
-        <span class="cel-swmeta"><span><span class="cel-swname">accent</span><span class="cel-swdesc">the celadon green</span></span><span class="cel-hex" data-hex-for="accent">#9ecf75</span></span>
-      </button>
+  <!-- Spectrum -->
+  <section class="cel-container cel-spectrum-wrap" aria-label="All twenty roles in order">
+    <div class="cel-spectrum" id="cel-spectrum"></div>
+    <div class="cel-spectrum-labels cel-label"><span>bg</span><span>field &rarr; text &rarr; accents &rarr; bright</span><span>bright cyan</span></div>
+  </section>
+
+  <!-- Accents -->
+  <section class="cel-container cel-accents-intro">
+    <div>
+      <div class="cel-kicker">Accents</div>
+      <h2 class="cel-h2">Six hues,<br>one loudness.</h2>
+    </div>
+    <p class="cel-prose">Honest to their ANSI slots and held in a single lightness band, so red never outshouts blue. The outer ring is the bright variant &mdash; what bold text gets.</p>
+  </section>
+  <section class="cel-accents-band">
+    <div class="cel-photo" aria-hidden="true">
+      <img src="/photos/moss-floor.jpg" alt="">
+      <div class="cel-photo-tint"></div>
+      <div class="cel-photo-fade"></div>
+    </div>
+    <div class="cel-accents" id="cel-accents" aria-label="Accent colors"></div>
+    <a href="https://unsplash.com/@betagamma" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Daniil Silantev / Unsplash</a>
+  </section>
+
+  <!-- Spec table (rows rendered by palette.js) -->
+  <section class="cel-container cel-spec">
+    <div class="cel-section-head">
+      <div>
+        <div class="cel-kicker">Specification</div>
+        <h2 class="cel-h2 cel-h2-sm">Every role, every space.</h2>
+      </div>
+      <p class="cel-prose">OKLCH is what the generator thinks in; hex and RGB are what your app wants. Build ports from <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/json" target="_blank" rel="noopener">ports/json</a>, never from these numbers by hand.</p>
+    </div>
+    <div class="cel-spec-scroll">
+      <div class="cel-spec-table">
+        <div class="cel-spec-head cel-label">
+          <span></span><span>Role</span><span>Hex</span><span>RGB</span><span>OKLCH</span><span class="cel-spec-right">Lc on bg</span>
+        </div>
+        <div id="cel-spec-rows"></div>
+      </div>
     </div>
   </section>
 
-  <section class="cel-palette-section">
-    <h2 style="font-size:26px;color:var(--cel-fg);margin:0 0 6px">The accents</h2>
-    <p style="color:var(--cel-muted);margin:0 0 20px;font-size:14px;max-width:62ch;text-wrap:pretty">Six hues, honest to their ANSI slots, held in one tight loudness band. The bright row is what bold text gets.</p>
-    <div class="cel-swgrid cel-swgrid-ansi">
-      <button type="button" class="cel-swcard" data-role="red">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-red)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">red</span><span class="cel-swdesc-ansi">errors, deletions</span><span class="cel-hex" data-hex-for="red">#fba29b</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="green">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-green)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">green</span><span class="cel-swdesc-ansi">success, additions</span><span class="cel-hex" data-hex-for="green">#9ecf75</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="yellow">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-yellow)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">yellow</span><span class="cel-swdesc-ansi">warnings, changes</span><span class="cel-hex" data-hex-for="yellow">#dcbb50</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="blue">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-blue)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">blue</span><span class="cel-swdesc-ansi">info, paths</span><span class="cel-hex" data-hex-for="blue">#7cc7fb</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="magenta">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-magenta)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">magenta</span><span class="cel-swdesc-ansi">keywords, branches</span><span class="cel-hex" data-hex-for="magenta">#f49cdb</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="cyan">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-cyan)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">cyan</span><span class="cel-swdesc-ansi">strings, links</span><span class="cel-hex" data-hex-for="cyan">#37d8c9</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="red-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-red-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright red</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="red-b">#fec4be</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="green-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-green-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright green</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="green-b">#b6e68f</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="yellow-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-yellow-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright yellow</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="yellow-b">#f1d26f</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="blue-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-blue-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright blue</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="blue-b">#abdbfe</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="magenta-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-magenta-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright magenta</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="magenta-b">#ffbceb</span></span>
-      </button>
-      <button type="button" class="cel-swcard" data-role="cyan-b">
-        <span class="cel-chip cel-chip-sm" style="background:var(--cel-cyan-b)"></span>
-        <span class="cel-swmeta-stack"><span class="cel-swname-sm">bright cyan</span><span class="cel-swdesc-ansi"></span><span class="cel-hex" data-hex-for="cyan-b">#62efdf</span></span>
-      </button>
-    </div>
-    <div class="cel-palette-note">
-      <span class="cel-palette-note-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg></span>
-      <p>Don't hand-pick from these swatches when porting — read the hexes from <a href="https://github.com/celadon-theme/celadon-theme/tree/main/ports/json" target="_blank" rel="noopener">ports/json</a> so your port regenerates with the family. The <a href="/contribute.html">contribute page</a> has the details.</p>
-    </div>
-  </section>
 </main>
 
-<footer style="border-top:1px solid var(--cel-border)">
-  <div class="cel-container cel-footer-bar" style="padding-top:26px;padding-bottom:26px">
-    <span>Celadon · MIT license · named for the pale grey-green ceramic glaze</span>
+<footer class="cel-footer">
+  <div class="cel-container cel-footer-bar">
+    <span>MIT license &middot; named for the pale grey-green glaze</span>
     <span class="cel-footer-links">
       <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener">GitHub</a>
-      <a href="/contribute.html">Contribute</a>
+      <a href="/contribute">Contribute</a>
     </span>
   </div>
+  <div class="cel-container"><div class="cel-footer-mark" aria-hidden="true">Celadon</div></div>
 </footer>
 
 </div>
 <script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/palette.js"></script>
 </body>
 </html>

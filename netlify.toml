@@ -8,7 +8,25 @@
 [build.environment]
   NODE_VERSION = "24"
 
-# Long-cache the fingerprinted assets Vite emits under /assets.
+# Clean URLs: pages link to /palette etc.; serve the built .html behind them.
+[[redirects]]
+  from = "/palette"
+  to = "/palette.html"
+  status = 200
+
+[[redirects]]
+  from = "/ports"
+  to = "/ports.html"
+  status = 200
+
+[[redirects]]
+  from = "/contribute"
+  to = "/contribute.html"
+  status = 200
+
+# Long-cache the fingerprinted assets Vite emits under /assets. Static files
+# from public/ (brand, photos, icons) live at other paths on purpose, so they
+# can be replaced in place.
 [[headers]]
   for = "/assets/*"
   [headers.values]
