@@ -63,6 +63,8 @@ npm run sync-palette -- ../celadon-theme/ports/json   # or from a local checkout
 
 The chosen variant is stored in `localStorage["celadon-variant"]` and applied
 in `<head>` before first paint, so it persists across pages without a flash.
+With no saved choice the site follows the OS color scheme: Sky in light mode,
+Celadon otherwise.
 
 ## Design source
 

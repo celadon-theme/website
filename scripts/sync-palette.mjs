@@ -10,12 +10,13 @@ import { fileURLToPath } from 'node:url';
 const OUT = fileURLToPath(new URL('../public/celadon-theme.js', import.meta.url));
 const RAW = 'https://raw.githubusercontent.com/celadon-theme/celadon-theme/main/ports/json/';
 
-// Site-only metadata per variant, in display order (light → dark, 01–04).
+// Site-only metadata per variant, in display order (01–04): the default
+// first, then the other darks, Sky last.
 const VARIANTS = [
-  { slug: 'celadon-sky', label: 'Sky', kind: 'light · sage paper', shadow: 'rgba(36,64,28,.14)|rgba(36,64,28,.18)' },
-  { slug: 'celadon-powder', label: 'Powder', kind: 'dark · low contrast', shadow: 'rgba(0,0,0,.35)|rgba(0,0,0,.45)' },
   { slug: 'celadon', label: 'Celadon', kind: 'dark · medium contrast', shadow: 'rgba(0,0,0,.4)|rgba(0,0,0,.5)' },
+  { slug: 'celadon-powder', label: 'Powder', kind: 'dark · low contrast', shadow: 'rgba(0,0,0,.35)|rgba(0,0,0,.45)' },
   { slug: 'celadon-jade', label: 'Jade', kind: 'dark · high contrast', shadow: 'rgba(0,0,0,.5)|rgba(0,0,0,.6)' },
+  { slug: 'celadon-sky', label: 'Sky', kind: 'light · sage paper', shadow: 'rgba(36,64,28,.14)|rgba(36,64,28,.18)' },
 ];
 
 const ACCENTS = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan'];
@@ -82,9 +83,15 @@ const source = `/* Celadon site theming — variant palettes + live re-theme via
 ${blocks.join(',\n')}
   };
   var ORDER = [${VARIANTS.map((v) => js(v.slug)).join(', ')}];
+  function stored() {
+    try { var v = localStorage.getItem('celadon-variant'); return V[v] ? v : null; }
+    catch (e) { return null; }
+  }
+  // No saved choice: follow the OS — Sky for light mode, Celadon otherwise.
   function current() {
-    try { var v = localStorage.getItem('celadon-variant'); return V[v] ? v : 'celadon'; }
-    catch (e) { return 'celadon'; }
+    if (stored()) return stored();
+    var light = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
+    return light ? 'celadon-sky' : 'celadon';
   }
   function apply(name, persist) {
     var v = V[name] || V['celadon'];

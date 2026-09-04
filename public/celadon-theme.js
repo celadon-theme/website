@@ -3,14 +3,14 @@
    Don't edit hexes here; run `npm run sync-palette`. */
 (function () {
   var V = {
-    'celadon-sky': {
-      label: 'Sky', kind: 'light · sage paper',
+    'celadon': {
+      label: 'Celadon', kind: 'dark · medium contrast',
       colors: {
-        bg: '#eaf6e8', surface: '#deedda', alt: '#cee1ca', border: '#c1d3be', fg: '#3b423a',
-        muted: '#5d675b', faint: '#7a8378', accent: '#40783b', 'accent-ink': '#eaf6e8', red: '#9b4a43',
-        green: '#40783b', yellow: '#9c7220', blue: '#246099', magenta: '#874576', cyan: '#1c7472',
-        'red-b': '#84312b', 'green-b': '#266221', 'yellow-b': '#825b00', 'blue-b': '#004982', 'magenta-b': '#702d60',
-        'cyan-b': '#005c5a', 'shadow-md': '0 3px 10px rgba(36,64,28,.14)', 'shadow-lg': '0 12px 32px rgba(36,64,28,.18)'
+        bg: '#131b11', surface: '#182216', alt: '#232f20', border: '#2f3b2c', fg: '#c9d5c6',
+        muted: '#939f91', faint: '#727e70', accent: '#9ecf75', 'accent-ink': '#131b11', red: '#fba29b',
+        green: '#9ecf75', yellow: '#dcbb50', blue: '#7cc7fb', magenta: '#f49cdb', cyan: '#37d8c9',
+        'red-b': '#fec4be', 'green-b': '#b6e68f', 'yellow-b': '#f1d26f', 'blue-b': '#abdbfe', 'magenta-b': '#ffbceb',
+        'cyan-b': '#62efdf', 'shadow-md': '0 3px 10px rgba(0,0,0,.4)', 'shadow-lg': '0 12px 32px rgba(0,0,0,.5)'
       }
     },
     'celadon-powder': {
@@ -23,16 +23,6 @@
         'cyan-b': '#48daca', 'shadow-md': '0 3px 10px rgba(0,0,0,.35)', 'shadow-lg': '0 12px 32px rgba(0,0,0,.45)'
       }
     },
-    'celadon': {
-      label: 'Celadon', kind: 'dark · medium contrast',
-      colors: {
-        bg: '#131b11', surface: '#182216', alt: '#232f20', border: '#2f3b2c', fg: '#c9d5c6',
-        muted: '#939f91', faint: '#727e70', accent: '#9ecf75', 'accent-ink': '#131b11', red: '#fba29b',
-        green: '#9ecf75', yellow: '#dcbb50', blue: '#7cc7fb', magenta: '#f49cdb', cyan: '#37d8c9',
-        'red-b': '#fec4be', 'green-b': '#b6e68f', 'yellow-b': '#f1d26f', 'blue-b': '#abdbfe', 'magenta-b': '#ffbceb',
-        'cyan-b': '#62efdf', 'shadow-md': '0 3px 10px rgba(0,0,0,.4)', 'shadow-lg': '0 12px 32px rgba(0,0,0,.5)'
-      }
-    },
     'celadon-jade': {
       label: 'Jade', kind: 'dark · high contrast',
       colors: {
@@ -42,12 +32,28 @@
         'red-b': '#fedfdb', 'green-b': '#c9f9a1', 'yellow-b': '#ffe697', 'blue-b': '#d1ebfe', 'magenta-b': '#ffdbf3',
         'cyan-b': '#8ffff1', 'shadow-md': '0 3px 10px rgba(0,0,0,.5)', 'shadow-lg': '0 12px 32px rgba(0,0,0,.6)'
       }
+    },
+    'celadon-sky': {
+      label: 'Sky', kind: 'light · sage paper',
+      colors: {
+        bg: '#eaf6e8', surface: '#deedda', alt: '#cee1ca', border: '#c1d3be', fg: '#3b423a',
+        muted: '#5d675b', faint: '#7a8378', accent: '#40783b', 'accent-ink': '#eaf6e8', red: '#9b4a43',
+        green: '#40783b', yellow: '#9c7220', blue: '#246099', magenta: '#874576', cyan: '#1c7472',
+        'red-b': '#84312b', 'green-b': '#266221', 'yellow-b': '#825b00', 'blue-b': '#004982', 'magenta-b': '#702d60',
+        'cyan-b': '#005c5a', 'shadow-md': '0 3px 10px rgba(36,64,28,.14)', 'shadow-lg': '0 12px 32px rgba(36,64,28,.18)'
+      }
     }
   };
-  var ORDER = ['celadon-sky', 'celadon-powder', 'celadon', 'celadon-jade'];
+  var ORDER = ['celadon', 'celadon-powder', 'celadon-jade', 'celadon-sky'];
+  function stored() {
+    try { var v = localStorage.getItem('celadon-variant'); return V[v] ? v : null; }
+    catch (e) { return null; }
+  }
+  // No saved choice: follow the OS — Sky for light mode, Celadon otherwise.
   function current() {
-    try { var v = localStorage.getItem('celadon-variant'); return V[v] ? v : 'celadon'; }
-    catch (e) { return 'celadon'; }
+    if (stored()) return stored();
+    var light = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
+    return light ? 'celadon-sky' : 'celadon';
   }
   function apply(name, persist) {
     var v = V[name] || V['celadon'];
