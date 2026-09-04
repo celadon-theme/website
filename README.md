@@ -73,7 +73,7 @@ code; this repo is the implementation:
 
 - `<x-dc>` / `<sc-for>` / `{{ … }}` templating → plain HTML + `src/*.js`.
 - Fake `style-hover="…"` attributes → real `:hover` / `:focus-visible` CSS.
-- Desktop-only grids → responsive collapses below ~1024px and ~640px.
+- Desktop-only grids → one phone layout below 860px (the `responsive` block in `src/styles/site.css`).
 
 The design-system `ds.css` is vendored verbatim from that project.
 

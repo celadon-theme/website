@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Palette — Celadon</title>
 <meta name="description" content="The Celadon palette — twenty roles per variant, generated in OKLCH and gate-checked with APCA. Hex, RGB, OKLCH and contrast for every color; click any swatch to copy its hex.">
+<meta property="og:title" content="Palette — Celadon">
+<meta property="og:description" content="Twenty roles per variant, generated in OKLCH and gate-checked with APCA.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://celadontheme.com/palette">
+<meta property="og:image" content="https://celadontheme.com/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://celadontheme.com/palette">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
@@ -35,7 +42,7 @@
   <div class="cel-switch" role="group" aria-label="Theme variant">
     <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
-    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon" aria-pressed="false" title="dark · medium contrast">Celadon</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
   </div>
 </nav>
@@ -45,7 +52,7 @@
   <!-- Hero + swatch stack (stack rendered by palette.js) -->
   <section class="cel-phero">
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/fern-rock.jpg" alt="">
+      <img src="/photos/fern-rock.jpg" alt="" fetchpriority="high" decoding="async">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>
@@ -76,7 +83,7 @@
   </section>
   <section class="cel-accents-band">
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/moss-floor.jpg" alt="">
+      <img src="/photos/moss-floor.jpg" alt="" loading="lazy" decoding="async">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>

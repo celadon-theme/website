@@ -12,10 +12,10 @@ const RAW = 'https://raw.githubusercontent.com/celadon-theme/celadon-theme/main/
 
 // Site-only metadata per variant, in display order (light → dark, 01–04).
 const VARIANTS = [
-  { slug: 'celadon-sky', label: 'Sky', kind: 'light · sage paper', use: 'daytime', shadow: 'rgba(36,64,28,.14)|rgba(36,64,28,.18)' },
-  { slug: 'celadon-powder', label: 'Powder', kind: 'dark · low contrast', use: 'night, dim rooms', shadow: 'rgba(0,0,0,.35)|rgba(0,0,0,.45)' },
-  { slug: 'celadon', label: 'Celadon', kind: 'dark · medium contrast', use: 'the default', shadow: 'rgba(0,0,0,.4)|rgba(0,0,0,.5)' },
-  { slug: 'celadon-jade', label: 'Jade', kind: 'dark · high contrast', use: 'bright rooms, glare', shadow: 'rgba(0,0,0,.5)|rgba(0,0,0,.6)' },
+  { slug: 'celadon-sky', label: 'Sky', kind: 'light · sage paper', shadow: 'rgba(36,64,28,.14)|rgba(36,64,28,.18)' },
+  { slug: 'celadon-powder', label: 'Powder', kind: 'dark · low contrast', shadow: 'rgba(0,0,0,.35)|rgba(0,0,0,.45)' },
+  { slug: 'celadon', label: 'Celadon', kind: 'dark · medium contrast', shadow: 'rgba(0,0,0,.4)|rgba(0,0,0,.5)' },
+  { slug: 'celadon-jade', label: 'Jade', kind: 'dark · high contrast', shadow: 'rgba(0,0,0,.5)|rgba(0,0,0,.6)' },
 ];
 
 const ACCENTS = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan'];
@@ -41,20 +41,26 @@ function siteColors(p, shadow) {
 }
 
 async function loadPalette(slug, localDir) {
-  if (localDir) return JSON.parse(await readFile(`${localDir}/${slug}.json`, 'utf8'));
-  const res = await fetch(`${RAW}${slug}.json`);
-  if (!res.ok) throw new Error(`${slug}.json: HTTP ${res.status}`);
-  return res.json();
+  const json = localDir
+    ? JSON.parse(await readFile(`${localDir}/${slug}.json`, 'utf8'))
+    : await fetch(`${RAW}${slug}.json`).then((res) => {
+        if (!res.ok) throw new Error(`${slug}.json: HTTP ${res.status}`);
+        return res.json();
+      });
+  for (const [role, hex] of Object.entries(json.palette)) {
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) throw new Error(`${slug}.json: ${role} is not a #rrggbb hex: ${hex}`);
+  }
+  return json;
 }
 
-const js = (s) => `'${s.replace(/'/g, "\\'")}'`;
+const js = (s) => `'${s.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 
 function renderVariant(v, colors) {
   const entries = Object.entries(colors).map(([k, val]) => `${/^[a-z]+$/.test(k) ? k : js(k)}: ${js(val)}`);
   const lines = [];
   for (let i = 0; i < entries.length; i += 5) lines.push('        ' + entries.slice(i, i + 5).join(', '));
   return `    ${js(v.slug)}: {
-      label: ${js(v.label)}, kind: ${js(v.kind)}, use: ${js(v.use)},
+      label: ${js(v.label)}, kind: ${js(v.kind)},
       colors: {
 ${lines.join(',\n')}
       }

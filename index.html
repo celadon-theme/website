@@ -8,7 +8,10 @@
 <meta property="og:title" content="Celadon — calm green, honest color">
 <meta property="og:description" content="A sage-green theme family for terminals. Generated, gated, CVD-audited.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://celadontheme.com/">
 <meta property="og:image" content="https://celadontheme.com/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://celadontheme.com/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
@@ -40,7 +43,7 @@
   <div class="cel-switch" role="group" aria-label="Theme variant">
     <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
-    <button type="button" class="cel-vpill is-active" data-variant-pick="celadon" aria-pressed="true" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon" aria-pressed="false" title="dark · medium contrast">Celadon</button>
     <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
   </div>
 </nav>
@@ -51,7 +54,7 @@
   <section class="cel-hero">
     <div class="cel-hero-rail" aria-hidden="true"><span>Generated &middot; gate-checked &middot; honest to ANSI</span></div>
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/pine-mist.jpg" alt="" style="object-position:center 30%">
+      <img src="/photos/pine-mist.jpg" alt="" fetchpriority="high" decoding="async" style="object-position:center 30%">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>
@@ -75,10 +78,10 @@
             <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener" class="cel-btn cel-btn-outline">GitHub</a>
           </div>
           <div class="cel-nums" role="group" aria-label="Pick a variant">
-            <button type="button" class="cel-num" data-variant-pick="celadon-sky" title="Sky">01</button>
-            <button type="button" class="cel-num" data-variant-pick="celadon-powder" title="Powder">02</button>
-            <button type="button" class="cel-num is-active" data-variant-pick="celadon" title="Celadon">03</button>
-            <button type="button" class="cel-num" data-variant-pick="celadon-jade" title="Jade">04</button>
+            <button type="button" class="cel-num" data-variant-pick="celadon-sky" aria-pressed="false" title="Sky">01</button>
+            <button type="button" class="cel-num" data-variant-pick="celadon-powder" aria-pressed="false" title="Powder">02</button>
+            <button type="button" class="cel-num" data-variant-pick="celadon" aria-pressed="false" title="Celadon">03</button>
+            <button type="button" class="cel-num" data-variant-pick="celadon-jade" aria-pressed="false" title="Jade">04</button>
           </div>
         </div>
 
@@ -110,7 +113,7 @@
 
   <!-- Four grades — each card painted in its own variant (see main.js) -->
   <section class="cel-grades" aria-label="The four variants">
-    <button type="button" class="cel-grade" data-variant-pick="celadon-sky">
+    <button type="button" class="cel-grade" data-variant-pick="celadon-sky" aria-pressed="false">
       <div class="cel-grade-head"><span class="cel-grade-num">01</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Sky</div><div class="cel-grade-kind">light · sage paper &middot; daytime</div></div>
       <div class="cel-grade-status cel-mono">
@@ -121,7 +124,7 @@
         <div><span class="g-blue">??</span> <span class="g-cyan">ports/zed/</span></div>
       </div>
     </button>
-    <button type="button" class="cel-grade" data-variant-pick="celadon-powder">
+    <button type="button" class="cel-grade" data-variant-pick="celadon-powder" aria-pressed="false">
       <div class="cel-grade-head"><span class="cel-grade-num">02</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Powder</div><div class="cel-grade-kind">dark · low contrast &middot; night, dim rooms</div></div>
       <div class="cel-grade-status cel-mono">
@@ -132,7 +135,7 @@
         <div><span class="g-blue">??</span> <span class="g-cyan">ports/zed/</span></div>
       </div>
     </button>
-    <button type="button" class="cel-grade is-active" data-variant-pick="celadon">
+    <button type="button" class="cel-grade" data-variant-pick="celadon" aria-pressed="false">
       <div class="cel-grade-head"><span class="cel-grade-num">03</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Celadon</div><div class="cel-grade-kind">dark · medium contrast &middot; the default</div></div>
       <div class="cel-grade-status cel-mono">
@@ -143,7 +146,7 @@
         <div><span class="g-blue">??</span> <span class="g-cyan">ports/zed/</span></div>
       </div>
     </button>
-    <button type="button" class="cel-grade" data-variant-pick="celadon-jade">
+    <button type="button" class="cel-grade" data-variant-pick="celadon-jade" aria-pressed="false">
       <div class="cel-grade-head"><span class="cel-grade-num">04</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Jade</div><div class="cel-grade-kind">dark · high contrast &middot; bright rooms, glare</div></div>
       <div class="cel-grade-status cel-mono">

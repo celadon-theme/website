@@ -4,7 +4,7 @@
 (function () {
   var V = {
     'celadon-sky': {
-      label: 'Sky', kind: 'light · sage paper', use: 'daytime',
+      label: 'Sky', kind: 'light · sage paper',
       colors: {
         bg: '#eaf6e8', surface: '#deedda', alt: '#cee1ca', border: '#c1d3be', fg: '#3b423a',
         muted: '#5d675b', faint: '#7a8378', accent: '#40783b', 'accent-ink': '#eaf6e8', red: '#9b4a43',
@@ -14,7 +14,7 @@
       }
     },
     'celadon-powder': {
-      label: 'Powder', kind: 'dark · low contrast', use: 'night, dim rooms',
+      label: 'Powder', kind: 'dark · low contrast',
       colors: {
         bg: '#232b21', surface: '#273125', alt: '#303c2d', border: '#3a4637', fg: '#b5c1b2',
         muted: '#8b9689', faint: '#707c6e', accent: '#8fbf65', 'accent-ink': '#232b21', red: '#ea928c',
@@ -24,7 +24,7 @@
       }
     },
     'celadon': {
-      label: 'Celadon', kind: 'dark · medium contrast', use: 'the default',
+      label: 'Celadon', kind: 'dark · medium contrast',
       colors: {
         bg: '#131b11', surface: '#182216', alt: '#232f20', border: '#2f3b2c', fg: '#c9d5c6',
         muted: '#939f91', faint: '#727e70', accent: '#9ecf75', 'accent-ink': '#131b11', red: '#fba29b',
@@ -34,7 +34,7 @@
       }
     },
     'celadon-jade': {
-      label: 'Jade', kind: 'dark · high contrast', use: 'bright rooms, glare',
+      label: 'Jade', kind: 'dark · high contrast',
       colors: {
         bg: '#060d05', surface: '#0b150a', alt: '#182315', border: '#263123', fg: '#dbe7d8',
         muted: '#9ba799', faint: '#748072', accent: '#acde83', 'accent-ink': '#060d05', red: '#ffb7b0',

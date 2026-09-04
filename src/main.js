@@ -30,8 +30,10 @@ function init(C) {
 
   for (const el of pickers) {
     el.addEventListener('click', () => {
-      C.apply(el.dataset.variantPick);
-      reflect(el.dataset.variantPick);
+      const name = el.dataset.variantPick;
+      if (!C.variants[name]) return;
+      C.apply(name);
+      reflect(name);
     });
   }
   reflect(C.current());
@@ -48,6 +50,7 @@ function init(C) {
      data-copy-target is a selector for the element whose text gets copied. */
   for (const btn of document.querySelectorAll('[data-copy-target]')) {
     const source = document.querySelector(btn.dataset.copyTarget);
+    if (!source) continue;
     btn.addEventListener('click', () => copyWithFeedback(btn, source.textContent, 'Copied', 'Copy'));
   }
 }

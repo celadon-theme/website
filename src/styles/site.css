@@ -557,7 +557,6 @@ h1, h2, h3 { font-weight: 400; }
 
 /* ── palette · hero + swatch stack ──────────────────────────── */
 .cel-phero { position: relative; overflow: hidden; }
-.cel-phero .cel-photo img { object-position: center 40%; }
 .cel-phero-grid {
   position: relative;
   z-index: 1;
