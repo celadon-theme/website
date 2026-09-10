@@ -165,7 +165,11 @@ h1, h2, h3 { font-weight: 400; }
 }
 .cel-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--cel-fg); }
 .cel-brand:hover { color: var(--cel-fg); }
-.cel-brand-mark { width: 34px; height: 34px; border-radius: 9px; }
+.cel-brand-mark { width: 34px; height: 34px; }
+/* The mark's palette follows the page surface, not the OS scheme: Sky is the only light variant. */
+.cel-brand-mark--light { display: none; }
+[data-celadon="celadon-sky"] .cel-brand-mark--dark { display: none; }
+[data-celadon="celadon-sky"] .cel-brand-mark--light { display: block; }
 .cel-brand-name { font-family: var(--font-heading); font-size: 20px; }
 .cel-navlinks { display: flex; align-items: center; gap: 28px; }
 .cel-navlink {

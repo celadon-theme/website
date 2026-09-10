@@ -39,7 +39,7 @@ function render(name) {
     <button type="button" class="cel-tile${role === 'bg' ? ' cel-tile-bg' : ''}" data-hex="${c[role]}"
       style="background:${c[role]};color:${ink(c[role])}" title="Copy ${c[role]}">
       ${role === 'bg' ? `<span class="cel-tile-top">
-        <img src="/brand/celadon-logo.svg" alt="" width="34" height="34">
+        <img src="/brand/celadon-${name === 'celadon-sky' ? 'light' : 'dark'}.svg" alt="" width="34" height="34">
         <span class="cel-tile-variant">${name}</span>
       </span>` : ''}
       <span class="cel-tile-row">
