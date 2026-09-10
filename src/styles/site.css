@@ -232,19 +232,6 @@ h1, h2, h3 { font-weight: 400; }
     linear-gradient(90deg, var(--cel-bg), color-mix(in srgb, var(--cel-bg) 94%, transparent) 35%, transparent 85%),
     linear-gradient(180deg, color-mix(in srgb, var(--cel-bg) 30%, transparent), var(--cel-bg) 100%);
 }
-.cel-photo-credit {
-  position: absolute;
-  right: 32px;
-  bottom: 12px;
-  z-index: 1;
-  padding: 5px 10px;
-  border-radius: 999px;
-  background: var(--cel-bg);
-  font-size: 11px;
-  color: var(--cel-text-secondary);
-  text-decoration: none;
-}
-.cel-photo-credit:hover { color: var(--cel-fg); }
 .cel-hero { position: relative; overflow: hidden; padding: 24px 32px 64px; }
 .cel-hero-rail {
   position: absolute;
@@ -539,6 +526,8 @@ h1, h2, h3 { font-weight: 400; }
   color: var(--cel-alt);
   margin: 16px 0 -.24em -.035em;
   user-select: none;
+  /* Oversized glyphs overlap the links above; keep decoration out of hit testing. */
+  pointer-events: none;
   transition: color .35s ease;
 }
 
@@ -918,7 +907,6 @@ h1, h2, h3 { font-weight: 400; }
       color-mix(in srgb, var(--cel-bg) 88%, transparent) 26%,
       var(--cel-bg) 48%);
   }
-  .cel-photo-credit { right: 20px; }
 
   /* palette */
   .cel-tile-row { flex-wrap: wrap; }
