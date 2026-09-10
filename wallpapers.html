@@ -17,15 +17,16 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#131b11">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
-<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="preload" href="/src/assets/fonts/caprasimo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/src/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/styles/fonts.css">
+<link rel="stylesheet" href="/src/styles/base.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <link rel="stylesheet" href="/src/styles/wallpapers.css">
 <script src="/celadon-theme.js"></script>
 </head>
 <body>
+<a class="cel-skip-link" href="#main">Skip to content</a>
 <div class="cel-page cel-wallpaper-page">
 
 <nav class="cel-nav cel-container" aria-label="Primary">
@@ -49,11 +50,11 @@
   </div>
 </nav>
 
-<main class="cel-main cel-container cel-main-pad">
+<main id="main" tabindex="-1" class="cel-main cel-container cel-main-pad">
   <div id="wallpaper-gallery">
     <section class="cel-pagehead cel-wallpaper-head">
       <div class="cel-photo" aria-hidden="true">
-        <img id="wallpaper-hero" src="/wallpapers/previews/01-glaze-tide-celadon.jpg" alt="" fetchpriority="high" decoding="async">
+        <img src="/src/assets/wallpapers/03-paper-garden-1440.webp" srcset="/src/assets/wallpapers/03-paper-garden-720.webp 720w, /src/assets/wallpapers/03-paper-garden-1440.webp 1440w" sizes="100vw" width="1440" height="810" alt="" fetchpriority="high">
         <div class="cel-photo-tint"></div>
         <div class="cel-photo-fade"></div>
       </div>

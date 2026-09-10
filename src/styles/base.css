@@ -1,0 +1,15 @@
+/* Shared foundations from the Organic design: only tokens and resets used by the site. */
+:root {
+  --font-heading: "Caprasimo", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: 1.12; letter-spacing: -.015em; }
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 25px; }
+img { display: block; max-width: 100%; }

@@ -17,14 +17,15 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#131b11">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
-<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="preload" href="/src/assets/fonts/caprasimo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/src/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/styles/fonts.css">
+<link rel="stylesheet" href="/src/styles/base.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <script src="/celadon-theme.js"></script>
 </head>
 <body>
+<a class="cel-skip-link" href="#main">Skip to content</a>
 <div class="cel-page">
 
 <nav class="cel-nav cel-container" aria-label="Primary">
@@ -48,15 +49,15 @@
   </div>
 </nav>
 
-<main class="cel-main cel-container cel-main-pad">
+<main id="main" tabindex="-1" class="cel-main cel-container cel-main-pad">
 
   <section class="cel-pagehead">
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/moss-floor.jpg" alt="" fetchpriority="high" decoding="async" style="object-position:center 60%">
+      <img src="/src/assets/wallpapers/04-fern-study-1440.webp" srcset="/src/assets/wallpapers/04-fern-study-720.webp 720w, /src/assets/wallpapers/04-fern-study-1440.webp 1440w" sizes="100vw" width="1440" height="810" alt="" fetchpriority="high">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>
-    <a href="https://unsplash.com/@betagamma" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Daniil Silantev / Unsplash</a>
+    <a href="/wallpapers" class="cel-photo-credit">Fern Study &middot; Celadon wallpapers</a>
     <div class="cel-kicker-rule">Contribute &middot; submit a port</div>
     <h1 class="cel-title cel-title-nowrap">Contribute</h1>
     <p class="cel-lede">A port is usually an afternoon of work: read the palette, emit a config, screenshot it. Chrome themes, editors, window managers, launchers &mdash; if it takes colors, we want it. Here's the path from idea to listed port.</p>

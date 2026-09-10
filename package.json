@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "sync-palette": "node scripts/sync-palette.mjs",
     "sync-wallpapers": "node scripts/sync-wallpapers.mjs",
-    "test": "node --test scripts/*.test.mjs"
+    "test": "node --test scripts/*.test.mjs",
+    "optimize-wallpapers": "node scripts/optimize-wallpapers.mjs"
   },
   "devDependencies": {
     "vite": "^8.2.2"

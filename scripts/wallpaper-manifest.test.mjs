@@ -6,6 +6,17 @@ import { parseWallpapers } from './wallpaper-manifest.mjs';
 const collection = JSON.parse(await readFile(new URL('../src/data/wallpapers.json', import.meta.url), 'utf8'));
 const example = collection.images[0];
 
+test('every wallpaper has both local WebP sizes within the display image budget', async () => {
+  for (const image of parseWallpapers(collection)) {
+    for (const width of [720, 1440]) {
+      const bytes = await readFile(new URL(`../src/assets/wallpapers/${image.slug}-${width}.webp`, import.meta.url));
+      assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');
+      assert.equal(bytes.toString('ascii', 8, 12), 'WEBP');
+      assert.ok(bytes.length <= 80000, `${image.slug}-${width} exceeds the 80 KB image budget`);
+    }
+  }
+});
+
 test('published collection preserves dimensions and upscaling without generation prompts', () => {
   const result = parseWallpapers(collection);
   assert.equal(result.length, collection.images.length);
