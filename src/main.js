@@ -40,7 +40,7 @@ function init(C) {
 
   /* ── grade cards (home) ──────────────────────────────────────
      Each card is painted in its own variant, whatever the page is showing. */
-  const GRADE_ROLES = ['bg', 'fg', 'muted', 'faint', 'accent', 'border', 'red', 'green', 'yellow', 'blue', 'cyan'];
+  const GRADE_ROLES = ['bg', 'fg', 'muted', 'accent', 'border', 'red', 'green', 'yellow', 'blue', 'cyan'];
   for (const card of document.querySelectorAll('.cel-grade[data-variant-pick]')) {
     const { colors } = C.variants[card.dataset.variantPick];
     for (const role of GRADE_ROLES) card.style.setProperty(`--g-${role}`, colors[role]);

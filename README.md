@@ -80,7 +80,7 @@ code; this repo is the implementation:
 
 - `<x-dc>` / `<sc-for>` / `{{ … }}` templating → plain HTML + `src/*.js`.
 - Fake `style-hover="…"` attributes → real `:hover` / `:focus-visible` CSS.
-- Desktop-only grids → one phone layout below 860px (the `responsive` block in `src/styles/site.css`).
+- Desktop-only grids → a phone layout below 860px plus a narrow-phone tweak below 380px (the `responsive` blocks in `src/styles/site.css`).
 
 The design-system `ds.css` remains a vendored reference. Pages load only the foundations
 they use from `base.css`, plus the shared site components.
@@ -166,10 +166,9 @@ npm test
 npm run build
 ```
 
-Commit the generated JSON, `public/wallpapers/previews/`, and
-`src/assets/wallpapers/` together. The sync script
-validates metadata and downloads all previews before writing the snapshot. Image
-URLs use that same revision, so later upstream changes cannot mix metadata and files.
+Commit the generated JSON and `src/assets/wallpapers/` together. The sync script
+validates metadata before writing the snapshot. Image URLs use that same revision,
+so later upstream changes cannot mix metadata and files.
 Adding wallpapers upstream becomes visible after syncing and deploying the website.
 Original and desktop sizes and the upscaled label come from the manifest.
 

@@ -37,6 +37,12 @@
   --cel-header-bottom: 56px;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+:root { color-scheme: dark; }
+:root[data-celadon="celadon-sky"] {
+  color-scheme: light;
+  --cel-text-accent: var(--cel-green-b);
+  --cel-text-warning: color-mix(in srgb, var(--cel-yellow-b) 85%, var(--cel-fg));
+}
 
 body {
   margin: 0;
@@ -69,6 +75,8 @@ h1, h2, h3 { font-weight: 400; }
   padding-right: 32px;
 }
 .cel-mono { font-family: var(--font-mono); }
+.cel-skip-link { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 12px 20px; border-radius: 999px; background: var(--cel-fg); color: var(--cel-bg); transform: translateY(-160%); }
+.cel-skip-link:focus { transform: translateY(0); color: var(--cel-bg); }
 
 /* ── type ───────────────────────────────────────────────────── */
 .cel-kicker {
@@ -89,8 +97,6 @@ h1, h2, h3 { font-weight: 400; }
   color: var(--cel-fg);
 }
 .cel-kicker-rule::before { content: ''; width: 72px; height: 1px; background: var(--cel-border); }
-.cel-kicker-rule.is-accent { color: var(--cel-text-accent); }
-.cel-kicker-rule.is-accent::before { background: var(--cel-fg); opacity: .5; }
 .cel-label {
   font-size: 11px;
   font-weight: 700;
@@ -307,6 +313,8 @@ h1, h2, h3 { font-weight: 400; }
   gap: 12px;
   background: none;
   border: none;
+  min-height: 44px;
+  min-width: 24px;
   cursor: pointer;
   padding: 0;
   font-family: var(--font-heading);
@@ -365,6 +373,7 @@ h1, h2, h3 { font-weight: 400; }
   transition: box-shadow .25s ease;
 }
 .cel-grade.is-active { box-shadow: inset 0 0 0 3px var(--g-accent, var(--cel-accent)); }
+.cel-grade:focus-visible { outline-offset: -6px; outline-color: var(--g-fg); }
 .cel-grade-head { display: flex; justify-content: space-between; align-items: baseline; color: var(--g-accent, var(--cel-accent)); }
 .cel-grade-num { font-family: var(--font-heading); font-size: 54px; line-height: 1; }
 .cel-grade-current { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; visibility: hidden; }
@@ -379,7 +388,7 @@ h1, h2, h3 { font-weight: 400; }
   padding-top: 16px;
 }
 .cel-grade .g-accent { color: var(--g-accent); }
-.cel-grade .g-faint { color: var(--g-muted); }
+.cel-grade .g-muted { color: var(--g-muted); }
 .cel-grade .g-red { color: var(--g-red); }
 .cel-grade .g-green { color: var(--g-green); }
 .cel-grade .g-yellow { color: var(--g-yellow); }
@@ -551,6 +560,17 @@ h1, h2, h3 { font-weight: 400; }
   color: var(--cel-fg);
 }
 .cel-pagehead .cel-lede { max-width: 58ch; }
+/* Keep labels legible regardless of the artwork or selected variant. */
+.cel-phero .cel-kicker-rule, .cel-pagehead .cel-kicker-rule {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--cel-border);
+  border-radius: 999px;
+  background: var(--cel-bg);
+}
+.cel-phero .cel-kicker-rule::before, .cel-pagehead .cel-kicker-rule::before { display: none; }
+.cel-phero .cel-lede, .cel-pagehead .cel-lede { color: var(--cel-fg); }
 
 /* ── palette · hero + swatch stack ──────────────────────────── */
 .cel-phero { position: relative; overflow: hidden; }
@@ -586,14 +606,14 @@ h1, h2, h3 { font-weight: 400; }
   transition: background .35s ease, filter .2s ease;
 }
 .cel-tile:hover { filter: brightness(1.05); }
+.cel-tile:focus-visible { outline-offset: -4px; outline-color: currentColor; }
 .cel-tile-bg { min-height: 112px; }
 .cel-tile-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .cel-tile-top img { width: 34px; height: 34px; border-radius: 9px; }
-.cel-tile-variant { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: 1; }
+.cel-tile-variant { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .cel-tile-row { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; width: 100%; }
 .cel-tile-role { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .cel-tile-meta { font-family: var(--font-mono); font-size: 13px; display: flex; gap: 14px; }
-.cel-tile-lc { opacity: 1; }
 
 /* ── palette · spectrum ─────────────────────────────────────── */
 .cel-spectrum-wrap { padding-top: 56px; }
@@ -834,9 +854,10 @@ h1, h2, h3 { font-weight: 400; }
 .cel-simple p { margin: 0 auto 28px; max-width: 46ch; }
 
 /* ── responsive ───────────────────────────────────────────────
-   One breakpoint, per the design: below 860px the nav stacks into three
-   rows, every 2-col grid becomes 1-col, the grades strip 2-col, the accent
-   circles 3-col, and the spec table drops its RGB/OKLCH columns. */
+   Two breakpoints: below 860px the nav stacks into three rows, every 2-col
+   grid becomes 1-col, the grades strip 2-col, the accent circles 3-col, and
+   the spec table drops its RGB/OKLCH columns; below 380px the nav links wrap
+   to two rows and the hero buttons stack. */
 @media (max-width: 860px) {
   :root { --cel-header-top: 70px; --cel-header-bottom: 36px; }
   .cel-container, .cel-hero { padding-left: 20px; padding-right: 20px; }
@@ -925,28 +946,6 @@ h1, h2, h3 { font-weight: 400; }
   .cel-footer-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
-/* Keep labels legible regardless of the artwork or selected variant. */
-.cel-phero .cel-kicker-rule, .cel-pagehead .cel-kicker-rule {
-  display: inline-flex;
-  max-width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--cel-border);
-  border-radius: 999px;
-  background: var(--cel-bg);
-}
-.cel-phero .cel-kicker-rule::before, .cel-pagehead .cel-kicker-rule::before { display: none; }
-.cel-phero .cel-lede, .cel-pagehead .cel-lede { color: var(--cel-fg); }
-.cel-skip-link { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 12px 20px; border-radius: 999px; background: var(--cel-fg); color: var(--cel-bg); transform: translateY(-160%); }
-.cel-skip-link:focus { transform: translateY(0); color: var(--cel-bg); }
-.cel-tile:focus-visible { outline-offset: -4px; outline-color: currentColor; }
-.cel-grade:focus-visible { outline-offset: -6px; outline-color: var(--g-fg); }
-.cel-num { min-height: 44px; min-width: 24px; }
-:root { color-scheme: dark; }
-:root[data-celadon="celadon-sky"] {
-  color-scheme: light;
-  --cel-text-accent: var(--cel-green-b);
-  --cel-text-warning: color-mix(in srgb, var(--cel-yellow-b) 85%, var(--cel-fg));
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

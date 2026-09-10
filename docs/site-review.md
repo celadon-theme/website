@@ -1,7 +1,6 @@
 # Site review — September 10, 2026
 
-Reviewed all six pages, four theme variants, and desktop/mobile layouts. Changes
-are implemented locally; nothing has been deployed.
+Reviewed all six pages, four theme variants, and desktop/mobile layouts.
 
 ## Findings and changes
 
@@ -20,7 +19,7 @@ black or white. Sky links and status labels use darker colors on raised surfaces
 
 The original photos were already self-hosted; their size was the problem. Existing
 Celadon wallpapers suit the identity and avoid another asset-generation workflow.
-No new images were generated. Original photo files remain available as references.
+Original photo files remain available as references.
 
 ## Image weight
 
@@ -53,9 +52,8 @@ late request.
 Production builds served locally in headless Edge, empty browser contexts,
 cache disabled, 1.6 Mbps download, 150 ms latency, 4× CPU slowdown. These are single
 lab samples, not production field data or a Lighthouse score. Mobile viewport:
-390px, device scale factor 2. These measurements predate the follow-up header
-reassignment and header alignment: Paper Garden moved to Wallpapers, Palette now
-uses Pigment Bloom, and all four interior pages share title sizing and vertical spacing.
+390px, device scale factor 2. Measured before the final header artwork and shared
+header spacing were applied.
 
 | Page | Before LCP | After LCP | Before layout shift | After layout shift |
 | --- | ---: | ---: | ---: | ---: |
@@ -73,8 +71,8 @@ keeps its lines intact instead of rewrapping during font loading.
 
 ## Verification
 
-- Production build and all six Node tests pass, including swatch contrast across
-  every theme and an 80 KB budget for each generated display image.
+- Production build and all Node tests pass, including swatch ink selection and an
+  80 KB budget for each generated display image.
 - 48 axe checks: six pages × four themes × desktop/mobile. No WCAG A/AA violations
   reported in the checked content. The decorative, `aria-hidden` footer wordmark
   is excluded; its deliberately faint lettering remains.
