@@ -22,6 +22,22 @@ export function apca(text, bg) {
 
 const linear = (v) => (v /= 255) <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 
+// WCAG contrast for small website labels; the theme's APCA measurements stay separate.
+export function contrastRatio(a, b) {
+  const luminance = (hex) => {
+    const [r, g, b] = hexToRgb(hex).map(linear);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const [light, dark] = [luminance(a), luminance(b)].sort((a, b) => b - a);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+export function swatchInk(background, foreground, field) {
+  const candidates = [foreground, field].sort((a, b) => contrastRatio(b, background) - contrastRatio(a, background));
+  if (contrastRatio(candidates[0], background) >= 4.5) return candidates[0];
+  return contrastRatio('#000000', background) >= 4.5 ? '#000000' : '#ffffff';
+}
+
 export function oklch(hex) {
   const [r, g, b] = hexToRgb(hex).map(linear);
   const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);

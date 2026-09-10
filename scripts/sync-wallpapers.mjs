@@ -14,12 +14,7 @@ if (!/^[a-f0-9]{40}$/.test(revision)) throw new Error('Expected a full wallpaper
 const base = `https://raw.githubusercontent.com/celadon-theme/wallpapers/${revision}/`;
 const images = parseWallpapers(await (await get(`${base}manifest.json`)).json());
 const license = await (await get(`${base}LICENSE`)).text();
-const previews = await Promise.all(images.map(async (image) => ({
-  path: new URL(`../public/wallpapers/${image.preview}`, import.meta.url),
-  bytes: new Uint8Array(await (await get(base + image.preview)).arrayBuffer()),
-})));
-await mkdir(new URL('../public/wallpapers/previews/', import.meta.url), { recursive: true });
-await Promise.all(previews.map(({ path, bytes }) => writeFile(path, bytes)));
+await mkdir(new URL('../public/wallpapers/', import.meta.url), { recursive: true });
 await writeFile(new URL('../public/wallpapers/LICENSE', import.meta.url), license);
 await writeFile(new URL('../src/data/wallpapers.json', import.meta.url), JSON.stringify({ revision, images }, null, 2) + '\n');
 console.log(`Synced ${images.length} wallpapers from ${revision}`);

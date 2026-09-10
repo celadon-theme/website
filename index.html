@@ -17,15 +17,16 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#131b11">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
-<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="preload" href="/src/assets/fonts/caprasimo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/src/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/styles/fonts.css">
+<link rel="stylesheet" href="/src/styles/base.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <!-- Applies the stored/default variant before first paint (no flash of the wrong theme). -->
 <script src="/celadon-theme.js"></script>
 </head>
 <body>
+<a class="cel-skip-link" href="#main">Skip to content</a>
 <div class="cel-page">
 
 <nav class="cel-nav cel-container" aria-label="Primary">
@@ -49,17 +50,17 @@
   </div>
 </nav>
 
-<main class="cel-main">
+<main id="main" tabindex="-1" class="cel-main">
 
   <!-- Hero -->
   <section class="cel-hero">
     <div class="cel-hero-rail" aria-hidden="true"><span>Generated &middot; gate-checked &middot; honest to ANSI</span></div>
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/pine-mist.jpg" alt="" fetchpriority="high" decoding="async" style="object-position:center 30%">
+      <img src="/src/assets/wallpapers/01-glaze-tide-1440.webp" srcset="/src/assets/wallpapers/01-glaze-tide-720.webp 720w, /src/assets/wallpapers/01-glaze-tide-1440.webp 1440w" sizes="100vw" width="1440" height="810" alt="" fetchpriority="high">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>
-    <a href="https://unsplash.com/@lucabravo" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Luca Bravo / Unsplash</a>
+    <a href="/wallpapers" class="cel-photo-credit">Glaze Tide &middot; Celadon wallpapers</a>
 
     <div class="cel-hero-inner">
       <div class="cel-counter">
@@ -94,15 +95,15 @@
               <span class="cel-term-dot" style="background:var(--cel-green)"></span>
               <span class="cel-term-title cel-mono">theme = <span data-variant="slug">celadon</span></span>
             </div>
-            <div class="cel-term-body cel-mono">
-              <div><span style="color:var(--cel-blue)">~/dev/celadon</span> <span style="color:var(--cel-magenta)">&#xef3f; main</span> <span style="color:var(--cel-yellow)">py 3.12</span></div>
+            <div class="cel-term-body cel-mono" role="region" aria-label="Terminal preview" tabindex="0">
+              <div><span style="color:var(--cel-blue)">~/dev/celadon</span> <span style="color:var(--cel-magenta)">&#x2387; main</span> <span style="color:var(--cel-yellow-b)">py 3.12</span></div>
               <div><span style="color:var(--cel-accent)">&#10095;</span> git diff generator/gates.py</div>
               <div style="color:var(--cel-cyan)">@@ -41,7 +41,7 @@ def check(palette):</div>
               <div style="color:var(--cel-red)">-    assert apca(fg, bg) &gt; 60</div>
               <div style="color:var(--cel-green)">+    assert apca(fg, bg) &gt;= 75   # Lc 75 for body text</div>
               <div><span style="color:var(--cel-accent)">&#10095;</span> pytest -q</div>
-              <div><span style="color:var(--cel-faint)">..........                                         [100%]</span></div>
-              <div><span style="color:var(--cel-green-b)">10 passed</span><span style="color:var(--cel-faint)"> in 0.42s</span></div>
+              <div><span style="color:var(--cel-text-secondary)">..........                                         [100%]</span></div>
+              <div><span style="color:var(--cel-green-b)">10 passed</span><span style="color:var(--cel-text-secondary)"> in 0.42s</span></div>
               <div><span style="color:var(--cel-accent)">&#10095;</span> <span style="color:var(--cel-fg)">&#9612;</span></div>
             </div>
           </div>
@@ -118,7 +119,7 @@
       <div class="cel-grade-head"><span class="cel-grade-num">01</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Celadon</div><div class="cel-grade-kind">dark · medium contrast &middot; the default</div></div>
       <div class="cel-grade-status cel-mono">
-        <div><span class="g-accent">&#10095;</span> git status <span class="g-faint">-s</span></div>
+        <div><span class="g-accent">&#10095;</span> git status <span class="g-muted">-s</span></div>
         <div><span class="g-yellow"> M</span> gates.py</div>
         <div><span class="g-green">A </span> sky.json</div>
         <div><span class="g-red"> D</span> old_palette.py</div>
@@ -129,7 +130,7 @@
       <div class="cel-grade-head"><span class="cel-grade-num">02</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Powder</div><div class="cel-grade-kind">dark · low contrast &middot; night, dim rooms</div></div>
       <div class="cel-grade-status cel-mono">
-        <div><span class="g-accent">&#10095;</span> git status <span class="g-faint">-s</span></div>
+        <div><span class="g-accent">&#10095;</span> git status <span class="g-muted">-s</span></div>
         <div><span class="g-yellow"> M</span> gates.py</div>
         <div><span class="g-green">A </span> sky.json</div>
         <div><span class="g-red"> D</span> old_palette.py</div>
@@ -140,7 +141,7 @@
       <div class="cel-grade-head"><span class="cel-grade-num">03</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Jade</div><div class="cel-grade-kind">dark · high contrast &middot; bright rooms, glare</div></div>
       <div class="cel-grade-status cel-mono">
-        <div><span class="g-accent">&#10095;</span> git status <span class="g-faint">-s</span></div>
+        <div><span class="g-accent">&#10095;</span> git status <span class="g-muted">-s</span></div>
         <div><span class="g-yellow"> M</span> gates.py</div>
         <div><span class="g-green">A </span> sky.json</div>
         <div><span class="g-red"> D</span> old_palette.py</div>
@@ -151,7 +152,7 @@
       <div class="cel-grade-head"><span class="cel-grade-num">04</span><span class="cel-grade-current">current</span></div>
       <div><div class="cel-grade-name">Sky</div><div class="cel-grade-kind">light · sage paper &middot; daytime</div></div>
       <div class="cel-grade-status cel-mono">
-        <div><span class="g-accent">&#10095;</span> git status <span class="g-faint">-s</span></div>
+        <div><span class="g-accent">&#10095;</span> git status <span class="g-muted">-s</span></div>
         <div><span class="g-yellow"> M</span> gates.py</div>
         <div><span class="g-green">A </span> sky.json</div>
         <div><span class="g-red"> D</span> old_palette.py</div>

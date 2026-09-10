@@ -17,14 +17,15 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#131b11">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
-<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="preload" href="/src/assets/fonts/caprasimo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/src/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/styles/fonts.css">
+<link rel="stylesheet" href="/src/styles/base.css">
 <link rel="stylesheet" href="/src/styles/site.css">
 <script src="/celadon-theme.js"></script>
 </head>
 <body>
+<a class="cel-skip-link" href="#main">Skip to content</a>
 <div class="cel-page">
 
 <nav class="cel-nav cel-container" aria-label="Primary">
@@ -48,24 +49,24 @@
   </div>
 </nav>
 
-<main class="cel-main">
+<main id="main" tabindex="-1" class="cel-main">
 
   <!-- Hero + swatch stack (stack rendered by palette.js) -->
   <section class="cel-phero">
     <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/fern-rock.jpg" alt="" fetchpriority="high" decoding="async">
+      <img src="/src/assets/wallpapers/05-pigment-bloom-1440.webp" srcset="/src/assets/wallpapers/05-pigment-bloom-720.webp 720w, /src/assets/wallpapers/05-pigment-bloom-1440.webp 1440w" sizes="100vw" width="1440" height="810" alt="" fetchpriority="high">
       <div class="cel-photo-tint"></div>
       <div class="cel-photo-fade"></div>
     </div>
     <div class="cel-phero-grid">
       <div>
-        <div class="cel-kicker-rule is-accent">The palette &middot; <span data-variant="slug">celadon</span></div>
-        <h1 class="cel-title cel-title-lg">Palette</h1>
+        <div class="cel-kicker-rule">The palette &middot; <span data-variant="label">Celadon</span></div>
+        <h1 class="cel-title">Palette</h1>
         <p class="cel-lede">Twenty roles, generated in OKLCH and gate-checked with APCA. Contrast is shown as <span class="cel-mono">Lc</span> against the field. Click any color to copy its hex.</p>
       </div>
       <div class="cel-stack" id="cel-stack" aria-label="Field colors"></div>
     </div>
-    <a href="https://unsplash.com/@roap_oneee" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Roman Petrov / Unsplash</a>
+    <a href="/wallpapers" class="cel-photo-credit">Pigment Bloom &middot; Celadon wallpapers</a>
   </section>
 
   <!-- Spectrum -->
@@ -83,13 +84,7 @@
     <p class="cel-prose">Honest to their ANSI slots and held in a single lightness band, so red never outshouts blue. The outer ring is the bright variant &mdash; what bold text gets.</p>
   </section>
   <section class="cel-accents-band">
-    <div class="cel-photo" aria-hidden="true">
-      <img src="/photos/moss-floor.jpg" alt="" loading="lazy" decoding="async">
-      <div class="cel-photo-tint"></div>
-      <div class="cel-photo-fade"></div>
-    </div>
     <div class="cel-accents" id="cel-accents" aria-label="Accent colors"></div>
-    <a href="https://unsplash.com/@betagamma" target="_blank" rel="noopener" class="cel-photo-credit">Photo &middot; Daniil Silantev / Unsplash</a>
   </section>
 
   <!-- Spec table (rows rendered by palette.js) -->

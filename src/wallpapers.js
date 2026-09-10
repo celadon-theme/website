@@ -3,6 +3,13 @@ import collection from './data/wallpapers.json';
 
 /** @typedef {typeof collection.images[number]} Wallpaper */
 const base = `https://raw.githubusercontent.com/celadon-theme/wallpapers/${collection.revision}/`;
+const artwork = import.meta.glob('./assets/wallpapers/*.webp', { eager: true, query: '?url', import: 'default' });
+/** @param {Wallpaper} item @param {720 | 1440} width */
+const artworkUrl = (item, width) => {
+  const url = artwork[`./assets/wallpapers/${item.slug}-${width}.webp`];
+  if (typeof url !== 'string') throw new Error(`Missing artwork for ${item.slug}; run npm run optimize-wallpapers`);
+  return url;
+};
 /** @type {Record<string, string>} */
 const variants = { celadon: 'Celadon', 'celadon-powder': 'Powder', 'celadon-jade': 'Jade', 'celadon-sky': 'Sky' };
 
@@ -44,9 +51,14 @@ function showPreview(item, button) {
   galleryScroll = window.scrollY;
   required('wallpaper-title', 'h1').textContent = item.title;
   required('wallpaper-meta', 'p').textContent = `${variants[item.variant]} · ${category(item)}`;
-  image.src = base + item.original;
+  // The cached thumbnail remains visible while the larger local image loads.
+  image.style.backgroundImage = `url("${button.querySelector('img')?.currentSrc || artworkUrl(item, 720)}")`;
+  image.srcset = `${artworkUrl(item, 720)} 720w, ${artworkUrl(item, 1440)} 1440w`;
+  image.sizes = '(max-width: 860px) calc(100vw - 40px), (max-width: 1240px) calc(100vw - 64px), 1176px';
+  image.src = artworkUrl(item, 1440);
   image.alt = `${item.title} — ${category(item)}`;
-  [image.width, image.height] = item.originalSize;
+  image.width = 1440;
+  image.height = 810;
   desktop.href = base + item.desktop;
   desktop.download = item.desktop.split('/').pop() || '';
   original.href = base + item.original;
@@ -65,17 +77,19 @@ function showGallery() {
   window.scrollTo(0, galleryScroll);
 }
 
-for (const item of collection.images) {
+for (const [index, item] of collection.images.entries()) {
   const card = element('article', 'cel-wallpaper-card');
   const button = element('button', 'cel-wallpaper-thumbnail');
   button.type = 'button';
   button.setAttribute('aria-label', `Preview ${item.title}`);
   const thumbnail = element('img', '');
-  thumbnail.src = `/wallpapers/${item.preview}`;
+  thumbnail.src = artworkUrl(item, 720);
+  thumbnail.srcset = `${artworkUrl(item, 720)} 720w, ${artworkUrl(item, 1440)} 1440w`;
+  thumbnail.sizes = '(max-width: 860px) calc(100vw - 40px), (max-width: 1240px) calc((100vw - 88px) / 2), 576px';
   thumbnail.alt = `${item.title} — ${category(item)}`;
   thumbnail.width = 720;
   thumbnail.height = 405;
-  thumbnail.loading = 'lazy';
+  thumbnail.loading = index < 2 ? 'eager' : 'lazy';
   thumbnail.decoding = 'async';
   button.append(thumbnail);
   button.addEventListener('click', () => showPreview(item, button));
@@ -92,7 +106,6 @@ for (const item of collection.images) {
   grid.append(card);
 }
 required('wallpaper-count', 'span').textContent = `${collection.images.length} wallpapers · all four variants`;
-required('wallpaper-hero', 'img').src = `/wallpapers/${collection.images[0].preview}`;
 back.addEventListener('click', showGallery);
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !preview.hidden) showGallery();

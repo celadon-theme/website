@@ -7,6 +7,8 @@ const page = (p) => fileURLToPath(new URL(p, import.meta.url))
 export default defineConfig({
   build: {
     outDir: 'dist',
+    // Keep shared artwork cacheable instead of duplicating base64 inside pages and JS.
+    assetsInlineLimit: 0,
     rollupOptions: {
       input: {
         main: page('./index.html'),

@@ -2,7 +2,7 @@
 // are all derived from the live palette (hex, RGB, OKLCH, APCA Lc), so they're
 // rendered here and re-rendered on every variant switch. main.js dispatches
 // `celadon:variant`; clicking any swatch copies its hex.
-import { hexToRgb, apca, oklch, formatOklch } from './color.js';
+import { hexToRgb, apca, oklch, formatOklch, swatchInk } from './color.js';
 import { copyWithFeedback } from './clipboard.js';
 
 const ROLES = [
@@ -32,8 +32,7 @@ function render(name) {
   const c = C.variants[name].colors;
   // Lc of a color on the field; for the field itself, show how body text reads on it.
   const lc = (role) => apca(role === 'bg' ? c.fg : c[role], c.bg);
-  // Label a tile in whichever of fg/bg reads better on it.
-  const ink = (hex) => (apca(c.fg, hex) >= apca(c.bg, hex) ? c.fg : c.bg);
+  const ink = (hex) => swatchInk(hex, c.fg, c.bg);
 
   stack.innerHTML = FIELD.map((role) => `
     <button type="button" class="cel-tile${role === 'bg' ? ' cel-tile-bg' : ''}" data-hex="${c[role]}"
