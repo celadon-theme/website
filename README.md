@@ -28,6 +28,7 @@ npm run sync-palette  # regenerate public/celadon-theme.js from the theme's port
 index.html            Home
 palette.html          Palette — swatch stack, accents, spec table (rendered by src/palette.js)
 ports.html            Ports directory
+wallpapers.html       Wallpaper gallery, previews and downloads
 contribute.html       How to submit a port
 404.html              themed not-found page (Netlify serves it automatically)
 public/
@@ -94,7 +95,7 @@ at 1920px wide. Credits stay in the corner of each photo section.
 ## Deploy
 
 Netlify: build command `npm run build`, publish directory `dist`. Pages link to
-clean URLs (`/palette`, `/ports`, `/contribute`); `netlify.toml` rewrites them
+clean URLs (`/palette`, `/ports`, `/wallpapers`, `/contribute`); `netlify.toml` rewrites them
 to the built `.html` files. The pinned Node version is 24 (`netlify.toml`).
 
 ## Contributing
@@ -106,3 +107,31 @@ port and color issues belong in the
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Wallpaper gallery
+
+`/wallpapers` reuses the Ports/Contribute photo header and the shared variant picker.
+The picker changes the site appearance; it never filters the collection. Select a
+wallpaper for its original-resolution preview, dimensions, and JPEG/PNG downloads.
+The gallery loads small local previews; full images remain in the wallpaper repo.
+
+`src/data/wallpapers.json` is a generated snapshot of the
+[wallpaper manifest](https://github.com/celadon-theme/wallpapers/blob/main/manifest.json).
+The production build bundles this local data and needs no GitHub request. To update:
+
+```bash
+npm run sync-wallpapers           # latest main, resolved to a commit SHA
+npm run sync-wallpapers -- <sha>  # a specific full commit SHA
+npm test
+npm run build
+```
+
+Commit the generated JSON and `public/wallpapers/previews/` together. The sync script
+validates metadata and downloads all previews before writing the snapshot. Image
+URLs use that same revision, so later upstream changes cannot mix metadata and files.
+Adding wallpapers upstream becomes visible after syncing and deploying the website.
+Original and desktop sizes and the upscaled label come from the manifest.
+
+Artwork is AI-generated and MIT licensed by Celadon Theme; see the upstream
+[license](https://github.com/celadon-theme/wallpapers/blob/main/LICENSE) and
+[prompts](https://github.com/celadon-theme/wallpapers/blob/main/PROMPTS.md).

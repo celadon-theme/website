@@ -1,0 +1,34 @@
+.cel-wallpaper-page { container-type: inline-size; }
+.cel-wallpaper-head .cel-photo { width: 100cqw; }
+.cel-wallpaper-head .cel-title { white-space: nowrap; }
+.cel-wallpaper-bar, .cel-wallpaper-caption, .cel-wallpaper-card-bottom,
+.cel-wallpaper-notes, .cel-wallpaper-downloads { display: flex; justify-content: space-between; gap: 24px; }
+.cel-wallpaper-bar { align-items: center; flex-wrap: wrap; border-top: 1px solid var(--cel-border); padding-top: 20px; margin-bottom: 24px; color: var(--cel-muted); font-size: 13px; }
+.cel-wallpaper-bar a, .cel-wallpaper-download { font-weight: 600; text-decoration: none; }
+.cel-wallpaper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; padding-bottom: 44px; }
+.cel-wallpaper-card { min-width: 0; }
+.cel-wallpaper-thumbnail { display: block; width: 100%; padding: 0; border: 1px solid var(--cel-border); border-radius: var(--radius-md); background: var(--cel-surface); overflow: hidden; cursor: pointer; }
+.cel-wallpaper-thumbnail:hover { border-color: var(--cel-accent); }
+.cel-wallpaper-thumbnail img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+.cel-wallpaper-caption { align-items: center; gap: 12px; margin-top: 15px; }
+.cel-wallpaper-card h2 { font-family: var(--font-heading); font-size: 23px; line-height: 1.25; }
+.cel-wallpaper-caption .cel-tag { white-space: nowrap; }
+.cel-wallpaper-card-bottom { align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 7px; color: var(--cel-muted); font-size: 13px; }
+.cel-wallpaper-download { display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; }
+.cel-wallpaper-notes { border-top: 1px solid var(--cel-border); padding: 28px 0 42px; color: var(--cel-muted); font-size: 13px; }
+.cel-wallpaper-notes p { max-width: 62ch; }
+.cel-wallpaper-back { display: inline-block; min-height: 44px; border: 0; padding: 8px 0; margin-bottom: 24px; background: transparent; color: var(--cel-muted); font: inherit; cursor: pointer; }
+.cel-wallpaper-preview .cel-title { font-size: clamp(38px, 6vw, 70px); line-height: 1; margin-bottom: 8px; }
+.cel-wallpaper-meta { color: var(--cel-muted); margin-bottom: 24px; }
+.cel-wallpaper-image { display: block; width: 100%; height: auto; border: 1px solid var(--cel-border); border-radius: var(--radius-md); background: var(--cel-surface); }
+.cel-wallpaper-downloads { align-items: flex-start; padding: 24px 0 40px; color: var(--cel-muted); font-size: 14px; }
+.cel-wallpaper-downloads h2 { font: 600 15px var(--font-body); color: var(--cel-fg); margin-bottom: 6px; }
+.cel-wallpaper-file-options { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.cel-wallpaper-file-options a { min-height: 44px; }
+.cel-wallpaper-status { color: var(--cel-muted); font-size: 13px; overflow-wrap: anywhere; }
+.cel-wallpaper-status:empty { display: none; }
+@media (max-width: 860px) {
+  .cel-wallpaper-head .cel-title { font-size: clamp(36px, 12vw, 72px); }
+  .cel-wallpaper-grid { grid-template-columns: 1fr; gap: 28px; }
+  .cel-wallpaper-notes, .cel-wallpaper-downloads { flex-direction: column; }
+}
