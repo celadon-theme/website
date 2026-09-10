@@ -1,0 +1,149 @@
+{
+  "revision": "9349a7da01bd689940de26a6059a4ccbab61c3fb",
+  "images": [
+    {
+      "slug": "01-glaze-tide",
+      "title": "Glaze Tide",
+      "variant": "celadon",
+      "category": "Photographic / ceramic",
+      "original": "originals/01-glaze-tide-celadon.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/01-glaze-tide-celadon-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/01-glaze-tide-celadon.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "02-mist-country",
+      "title": "Mist Country",
+      "variant": "celadon-sky",
+      "category": "Photographic / landscape",
+      "original": "originals/02-mist-country-celadon-sky.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/02-mist-country-celadon-sky-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/02-mist-country-celadon-sky.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "03-paper-garden",
+      "title": "Paper Garden",
+      "variant": "celadon-sky",
+      "category": "Geometric / paper cut",
+      "original": "originals/03-paper-garden-celadon-sky.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/03-paper-garden-celadon-sky-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/03-paper-garden-celadon-sky.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "04-fern-study",
+      "title": "Fern Study",
+      "variant": "celadon-powder",
+      "category": "Photographic / botanical",
+      "original": "originals/04-fern-study-celadon-powder.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/04-fern-study-celadon-powder-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/04-fern-study-celadon-powder.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "05-pigment-bloom",
+      "title": "Pigment Bloom",
+      "variant": "celadon-powder",
+      "category": "Color splash / soft",
+      "original": "originals/05-pigment-bloom-celadon-powder.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/05-pigment-bloom-celadon-powder-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/05-pigment-bloom-celadon-powder.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "06-chromatic-current",
+      "title": "Chromatic Current",
+      "variant": "celadon",
+      "category": "Color splash / vivid",
+      "original": "originals/06-chromatic-current-celadon.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/06-chromatic-current-celadon-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/06-chromatic-current-celadon.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "07-jade-orbit",
+      "title": "Jade Orbit",
+      "variant": "celadon-jade",
+      "category": "Geometric / sculptural",
+      "original": "originals/07-jade-orbit-celadon-jade.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/07-jade-orbit-celadon-jade-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/07-jade-orbit-celadon-jade.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "08-sage-assembly",
+      "title": "Sage Assembly",
+      "variant": "celadon-jade",
+      "category": "Geometric / graphic",
+      "original": "originals/08-sage-assembly-celadon-jade.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/08-sage-assembly-celadon-jade-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/08-sage-assembly-celadon-jade.jpg",
+      "upscaled": true
+    }
+  ]
+}

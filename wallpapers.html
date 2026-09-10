@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wallpapers — Celadon</title>
+<meta name="description" content="Wallpapers for the Celadon theme family. Browse landscapes, color splashes and geometric art, with desktop JPEG and original PNG downloads.">
+<meta property="og:title" content="Wallpapers — Celadon">
+<meta property="og:description" content="Wallpapers for the Celadon theme family. Browse landscapes, color splashes and geometric art, with desktop JPEG and original PNG downloads.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://celadontheme.com/wallpapers">
+<meta property="og:image" content="https://celadontheme.com/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://celadontheme.com/wallpapers">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#131b11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/src/styles/ds.css">
+<link rel="stylesheet" href="/src/styles/site.css">
+<link rel="stylesheet" href="/src/styles/wallpapers.css">
+<script src="/celadon-theme.js"></script>
+</head>
+<body>
+<div class="cel-page cel-wallpaper-page">
+
+<nav class="cel-nav cel-container" aria-label="Primary">
+  <a href="/" class="cel-brand">
+    <img src="/brand/celadon-dark.svg" alt="" width="34" height="34" class="cel-brand-mark cel-brand-mark--dark">
+    <img src="/brand/celadon-light.svg" alt="" width="34" height="34" class="cel-brand-mark cel-brand-mark--light">
+    <span class="cel-brand-name">Celadon</span>
+  </a>
+  <div class="cel-navlinks">
+    <a href="/" class="cel-navlink">Home</a>
+    <a href="/palette" class="cel-navlink">Palette</a>
+    <a href="/ports" class="cel-navlink">Ports</a>
+    <a href="/wallpapers" class="cel-navlink is-active" aria-current="page">Wallpapers</a>
+    <a href="/contribute" class="cel-navlink">Contribute</a>
+  </div>
+  <div class="cel-switch" role="group" aria-label="Theme variant">
+    <button type="button" class="cel-vpill" data-variant-pick="celadon" aria-pressed="false" title="dark · medium contrast">Celadon</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-powder" aria-pressed="false" title="dark · low contrast">Powder</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-jade" aria-pressed="false" title="dark · high contrast">Jade</button>
+    <button type="button" class="cel-vpill" data-variant-pick="celadon-sky" aria-pressed="false" title="light · sage paper">Sky</button>
+  </div>
+</nav>
+
+<main class="cel-main cel-container cel-main-pad">
+  <div id="wallpaper-gallery">
+    <section class="cel-pagehead cel-wallpaper-head">
+      <div class="cel-photo" aria-hidden="true">
+        <img id="wallpaper-hero" src="/wallpapers/previews/01-glaze-tide-celadon.jpg" alt="" fetchpriority="high" decoding="async">
+        <div class="cel-photo-tint"></div>
+        <div class="cel-photo-fade"></div>
+      </div>
+      <div class="cel-kicker-rule">Beyond the editor</div>
+      <h1 class="cel-title">Wallpapers</h1>
+      <p class="cel-lede">A little Celadon for the rest of your screen. Quiet scenes, from soft landscapes to a splash of color.</p>
+    </section>
+    <div class="cel-wallpaper-bar">
+      <span id="wallpaper-count">The collection</span>
+      <a href="https://github.com/celadon-theme/wallpapers" target="_blank" rel="noopener">Collection on GitHub ↗</a>
+    </div>
+    <div class="cel-wallpaper-grid" id="wallpaper-grid"></div>
+    <noscript><p>Browse previews and download every wallpaper in the <a href="https://github.com/celadon-theme/wallpapers">wallpaper collection on GitHub</a>.</p></noscript>
+    <div class="cel-wallpaper-notes">
+      <p>Desktop JPEGs include their resolution and any upscaling in each preview. Untouched original PNGs are also available.</p>
+      <p>AI-generated artwork.<br><a href="https://github.com/celadon-theme/wallpapers/blob/main/LICENSE">MIT license</a> · <a href="https://github.com/celadon-theme/wallpapers/blob/main/PROMPTS.md">About the images</a></p>
+    </div>
+  </div>
+  <section id="wallpaper-preview" class="cel-wallpaper-preview" aria-label="Wallpaper preview" hidden>
+    <button type="button" id="wallpaper-back" class="cel-wallpaper-back">← Back to wallpapers</button>
+    <h1 id="wallpaper-title" class="cel-title"></h1>
+    <p id="wallpaper-meta" class="cel-wallpaper-meta"></p>
+    <img id="wallpaper-image" class="cel-wallpaper-image" alt="">
+    <div class="cel-wallpaper-downloads">
+      <div><h2>Make it your background.</h2><p id="wallpaper-sizes"></p><p>AI-generated · <a href="https://github.com/celadon-theme/wallpapers/blob/main/LICENSE">MIT license</a></p></div>
+      <div class="cel-wallpaper-file-options">
+        <a id="wallpaper-desktop" class="cel-btn cel-btn-display cel-btn-primary" data-wallpaper-download>Download desktop JPEG</a>
+        <a id="wallpaper-original" data-wallpaper-download>Download original PNG</a>
+      </div>
+    </div>
+  </section>
+  <p id="wallpaper-status" class="cel-wallpaper-status" role="status" aria-live="polite"></p>
+</main>
+
+<footer class="cel-footer">
+  <div class="cel-container cel-footer-bar">
+    <span>MIT license &middot; named for the pale grey-green glaze</span>
+    <span class="cel-footer-links">
+      <a href="https://github.com/celadon-theme/celadon-theme" target="_blank" rel="noopener">GitHub</a>
+      <a href="/contribute">Contribute</a>
+    </span>
+  </div>
+  <div class="cel-container"><div class="cel-footer-mark" aria-hidden="true">Celadon</div></div>
+</footer>
+
+</div>
+<script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/wallpapers.js"></script>
+</body>
+</html>

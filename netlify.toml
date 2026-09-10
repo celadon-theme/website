@@ -20,6 +20,11 @@
   status = 200
 
 [[redirects]]
+  from = "/wallpapers"
+  to = "/wallpapers.html"
+  status = 200
+
+[[redirects]]
   from = "/contribute"
   to = "/contribute.html"
   status = 200

@@ -12,6 +12,7 @@ export default defineConfig({
         main: page('./index.html'),
         palette: page('./palette.html'),
         ports: page('./ports.html'),
+        wallpapers: page('./wallpapers.html'),
         contribute: page('./contribute.html'),
         notfound: page('./404.html'),
       },
