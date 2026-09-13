@@ -17,6 +17,6 @@
     "optimize-wallpapers": "node scripts/optimize-wallpapers.mjs"
   },
   "devDependencies": {
-    "vite": "^8.2.2"
+    "vite": "^8.3.0"
   }
 }
