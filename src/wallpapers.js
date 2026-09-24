@@ -84,7 +84,7 @@ for (const variant of ['celadon', 'celadon-sky', 'celadon-powder', 'celadon-jade
   if (!items.length) continue;
   const section = element('section', 'cel-wallpaper-group');
   section.id = `wallpapers-${variant}`;
-  const heading = element('h2', '', variants[variant]);
+  const heading = element('h2', 'cel-h2 cel-h2-sm', variants[variant]);
   heading.id = `${section.id}-title`;
   section.setAttribute('aria-labelledby', heading.id);
   const header = element('div', 'cel-wallpaper-group-head');
