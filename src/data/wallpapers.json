@@ -1,5 +1,5 @@
 {
-  "revision": "9349a7da01bd689940de26a6059a4ccbab61c3fb",
+  "revision": "44876fb4978cce599cd81cedccc2a702f9c3e3f6",
   "images": [
     {
       "slug": "01-glaze-tide",
@@ -143,6 +143,150 @@
         2160
       ],
       "preview": "previews/08-sage-assembly-celadon-jade.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "09-moss-terrace",
+      "title": "Moss Terrace",
+      "variant": "celadon",
+      "category": "Photographic / landscape",
+      "original": "originals/09-moss-terrace-celadon.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/09-moss-terrace-celadon-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/09-moss-terrace-celadon.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "10-folded-kiln",
+      "title": "Folded Kiln",
+      "variant": "celadon",
+      "category": "Geometric / ceramic",
+      "original": "originals/10-folded-kiln-celadon.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/10-folded-kiln-celadon-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/10-folded-kiln-celadon.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "11-reedlight",
+      "title": "Reedlight",
+      "variant": "celadon-sky",
+      "category": "Photographic / landscape",
+      "original": "originals/11-reedlight-celadon-sky.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/11-reedlight-celadon-sky-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/11-reedlight-celadon-sky.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "12-porcelain-steps",
+      "title": "Porcelain Steps",
+      "variant": "celadon-sky",
+      "category": "Geometric / ceramic",
+      "original": "originals/12-porcelain-steps-celadon-sky.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/12-porcelain-steps-celadon-sky-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/12-porcelain-steps-celadon-sky.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "13-velvet-leaves",
+      "title": "Velvet Leaves",
+      "variant": "celadon-powder",
+      "category": "Photographic / botanical",
+      "original": "originals/13-velvet-leaves-celadon-powder.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/13-velvet-leaves-celadon-powder-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/13-velvet-leaves-celadon-powder.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "14-silken-drift",
+      "title": "Silken Drift",
+      "variant": "celadon-powder",
+      "category": "Abstract / textile",
+      "original": "originals/14-silken-drift-celadon-powder.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/14-silken-drift-celadon-powder-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/14-silken-drift-celadon-powder.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "15-night-quarry",
+      "title": "Night Quarry",
+      "variant": "celadon-jade",
+      "category": "Photographic / mineral",
+      "original": "originals/15-night-quarry-celadon-jade.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/15-night-quarry-celadon-jade-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/15-night-quarry-celadon-jade.jpg",
+      "upscaled": true
+    },
+    {
+      "slug": "16-prismatic-veil",
+      "title": "Prismatic Veil",
+      "variant": "celadon-jade",
+      "category": "Abstract / glass",
+      "original": "originals/16-prismatic-veil-celadon-jade.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "desktop": "desktop-4k/16-prismatic-veil-celadon-jade-3840x2160.jpg",
+      "desktopSize": [
+        3840,
+        2160
+      ],
+      "preview": "previews/16-prismatic-veil-celadon-jade.jpg",
       "upscaled": true
     }
   ]

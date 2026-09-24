@@ -5,14 +5,23 @@
 .cel-wallpaper-notes, .cel-wallpaper-downloads { display: flex; justify-content: space-between; gap: 24px; }
 .cel-wallpaper-bar { align-items: center; flex-wrap: wrap; border-top: 1px solid var(--cel-border); padding-top: 20px; margin-bottom: 24px; color: var(--cel-text-secondary); font-size: 13px; }
 .cel-wallpaper-bar a, .cel-wallpaper-download { font-weight: 600; text-decoration: none; }
-.cel-wallpaper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; padding-bottom: 44px; }
+.cel-wallpaper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+.cel-wallpaper-groups { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 32px; padding: 0 0 28px; }
+.cel-wallpaper-groups a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--cel-fg); text-decoration: none; font-weight: 600; }
+.cel-wallpaper-groups a:hover { color: var(--cel-text-accent); }
+.cel-wallpaper-jump-count { color: var(--cel-text-secondary); font: 11px var(--font-mono); }
+.cel-wallpaper-group { display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 32px; padding: 40px 0 48px; border-top: 1px solid var(--cel-border); scroll-margin-top: 24px; }
+.cel-wallpaper-group-head { padding-top: 4px; }
+.cel-wallpaper-group-number { display: block; color: var(--cel-text-accent); font: 11px var(--font-mono); letter-spacing: .08em; margin-bottom: 16px; }
+.cel-wallpaper-group-head h2 { font-size: 38px; line-height: 1.05; margin-bottom: 16px; }
+.cel-wallpaper-group-description { color: var(--cel-text-secondary); font-size: 14px; line-height: 1.65; max-width: 32ch; }
+.cel-wallpaper-group-count { display: block; margin-top: 24px; color: var(--cel-text-secondary); font: 11px var(--font-mono); }
 .cel-wallpaper-card { min-width: 0; }
-.cel-wallpaper-thumbnail { display: block; width: 100%; padding: 0; border: 1px solid var(--cel-border); border-radius: var(--radius-md); background: var(--cel-surface); overflow: hidden; cursor: pointer; }
+.cel-wallpaper-thumbnail { display: block; width: 100%; padding: 0; border: 1px solid var(--cel-border); border-radius: var(--radius-sm); background: var(--cel-surface); overflow: hidden; cursor: pointer; }
 .cel-wallpaper-thumbnail:hover { border-color: var(--cel-accent); }
 .cel-wallpaper-thumbnail img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 .cel-wallpaper-caption { align-items: center; gap: 12px; margin-top: 15px; }
-.cel-wallpaper-card h2 { font-family: var(--font-heading); font-size: 23px; line-height: 1.25; }
-.cel-wallpaper-caption .cel-tag { white-space: nowrap; }
+.cel-wallpaper-card h3 { font-family: var(--font-heading); font-size: 21px; line-height: 1.25; }
 .cel-wallpaper-card-bottom { align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 7px; color: var(--cel-text-secondary); font-size: 13px; }
 .cel-wallpaper-download { display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; }
 .cel-wallpaper-notes { border-top: 1px solid var(--cel-border); padding: 28px 0 42px; color: var(--cel-text-secondary); font-size: 13px; }
@@ -28,6 +37,15 @@
 .cel-wallpaper-status { color: var(--cel-text-secondary); font-size: 13px; overflow-wrap: anywhere; }
 .cel-wallpaper-status:empty { display: none; }
 @media (max-width: 860px) {
-  .cel-wallpaper-grid { grid-template-columns: 1fr; gap: 28px; }
+  .cel-wallpaper-group { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 40px; }
+  .cel-wallpaper-group-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 16px; }
+  .cel-wallpaper-group-number { grid-column: 1 / -1; margin-bottom: 12px; }
+  .cel-wallpaper-group-head h2 { grid-column: 1; font-size: 34px; margin-bottom: 12px; }
+  .cel-wallpaper-group-description { grid-column: 1 / -1; max-width: 48ch; }
+  .cel-wallpaper-group-count { grid-column: 2; grid-row: 2; align-self: center; margin: 0 0 12px; }
   .cel-wallpaper-notes, .cel-wallpaper-downloads { flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .cel-wallpaper-grid { grid-template-columns: 1fr; gap: 28px; }
+  .cel-wallpaper-groups { justify-content: space-between; gap: 4px 16px; }
 }

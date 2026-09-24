@@ -28,7 +28,8 @@ function required(id, tag) {
 }
 const gallery = required('wallpaper-gallery', 'div');
 const preview = required('wallpaper-preview', 'section');
-const grid = required('wallpaper-grid', 'div');
+const groups = required('wallpaper-grid', 'div');
+const groupNav = required('wallpaper-groups', 'nav');
 const back = required('wallpaper-back', 'button');
 const status = required('wallpaper-status', 'p');
 const image = required('wallpaper-image', 'img');
@@ -77,33 +78,65 @@ function showGallery() {
   window.scrollTo(0, galleryScroll);
 }
 
-for (const [index, item] of collection.images.entries()) {
-  const card = element('article', 'cel-wallpaper-card');
-  const button = element('button', 'cel-wallpaper-thumbnail');
-  button.type = 'button';
-  button.setAttribute('aria-label', `Preview ${item.title}`);
-  const thumbnail = element('img', '');
-  thumbnail.src = artworkUrl(item, 720);
-  thumbnail.srcset = `${artworkUrl(item, 720)} 720w, ${artworkUrl(item, 1440)} 1440w`;
-  thumbnail.sizes = '(max-width: 860px) calc(100vw - 40px), (max-width: 1240px) calc((100vw - 88px) / 2), 576px';
-  thumbnail.alt = `${item.title} — ${category(item)}`;
-  thumbnail.width = 720;
-  thumbnail.height = 405;
-  thumbnail.loading = index < 2 ? 'eager' : 'lazy';
-  thumbnail.decoding = 'async';
-  button.append(thumbnail);
-  button.addEventListener('click', () => showPreview(item, button));
-  const caption = element('div', 'cel-wallpaper-caption');
-  caption.append(element('h2', '', item.title), element('span', 'cel-tag', variants[item.variant]));
-  const bottom = element('div', 'cel-wallpaper-card-bottom');
-  const download = element('a', 'cel-wallpaper-download', 'Download ↓');
-  download.href = base + item.desktop;
-  download.download = item.desktop.split('/').pop() || '';
-  download.dataset.wallpaperDownload = '';
-  download.setAttribute('aria-label', `Download ${item.title} desktop JPEG, ${desktopSize(item)}`);
-  bottom.append(element('span', '', category(item)), download);
-  card.append(button, caption, bottom);
-  grid.append(card);
+const styles = [
+  { variant: 'celadon', description: 'Deep greens, glazed ceramics, and a little vivid color.' },
+  { variant: 'celadon-sky', description: 'Open skies, pale paper, and quiet morning light.' },
+  { variant: 'celadon-powder', description: 'Soft botanicals, drifting pigment, and muted textures.' },
+  { variant: 'celadon-jade', description: 'Sculptural shapes, dark minerals, and luminous glass.' },
+];
+let cardIndex = 0;
+for (const [styleIndex, { variant, description }] of styles.entries()) {
+  const items = collection.images.filter((item) => item.variant === variant);
+  if (!items.length) continue;
+  const section = element('section', 'cel-wallpaper-group');
+  section.id = `wallpapers-${variant}`;
+  const heading = element('h2', '', variants[variant]);
+  heading.id = `${section.id}-title`;
+  section.setAttribute('aria-labelledby', heading.id);
+  const header = element('div', 'cel-wallpaper-group-head');
+  header.append(
+    element('span', 'cel-wallpaper-group-number', `${String(styleIndex + 1).padStart(2, '0')} / COLLECTION`),
+    heading,
+    element('p', 'cel-wallpaper-group-description', description),
+    element('span', 'cel-wallpaper-group-count', `${items.length} wallpapers`),
+  );
+  const grid = element('div', 'cel-wallpaper-grid');
+  section.append(header, grid);
+  groups.append(section);
+  const jump = element('a', '', variants[variant]);
+  jump.append(element('span', 'cel-wallpaper-jump-count', String(items.length)));
+  jump.href = `#${section.id}`;
+  groupNav.append(jump);
+
+  for (const item of items) {
+    const index = cardIndex++;
+    const card = element('article', 'cel-wallpaper-card');
+    const button = element('button', 'cel-wallpaper-thumbnail');
+    button.type = 'button';
+    button.setAttribute('aria-label', `Preview ${item.title}`);
+    const thumbnail = element('img', '');
+    thumbnail.src = artworkUrl(item, 720);
+    thumbnail.srcset = `${artworkUrl(item, 720)} 720w, ${artworkUrl(item, 1440)} 1440w`;
+    thumbnail.sizes = '(max-width: 600px) calc(100vw - 40px), (max-width: 860px) calc((100vw - 64px) / 2), (max-width: 1240px) calc((100vw - 304px) / 2), 468px';
+    thumbnail.alt = `${item.title} — ${category(item)}`;
+    thumbnail.width = 720;
+    thumbnail.height = 405;
+    thumbnail.loading = index < 2 ? 'eager' : 'lazy';
+    thumbnail.decoding = 'async';
+    button.append(thumbnail);
+    button.addEventListener('click', () => showPreview(item, button));
+    const caption = element('div', 'cel-wallpaper-caption');
+    caption.append(element('h3', '', item.title));
+    const bottom = element('div', 'cel-wallpaper-card-bottom');
+    const download = element('a', 'cel-wallpaper-download', 'Download ↓');
+    download.href = base + item.desktop;
+    download.download = item.desktop.split('/').pop() || '';
+    download.dataset.wallpaperDownload = '';
+    download.setAttribute('aria-label', `Download ${item.title} desktop JPEG, ${desktopSize(item)}`);
+    bottom.append(element('span', '', category(item)), download);
+    card.append(button, caption, bottom);
+    grid.append(card);
+  }
 }
 required('wallpaper-count', 'span').textContent = `${collection.images.length} wallpapers · all four variants`;
 back.addEventListener('click', showGallery);
