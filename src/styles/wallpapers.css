@@ -6,12 +6,19 @@
 .cel-wallpaper-bar { align-items: center; flex-wrap: wrap; border-top: 1px solid var(--cel-border); padding-top: 20px; margin-bottom: 24px; color: var(--cel-text-secondary); font-size: 13px; }
 .cel-wallpaper-bar a, .cel-wallpaper-download { font-weight: 600; text-decoration: none; }
 .cel-wallpaper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; padding-bottom: 44px; }
+.cel-wallpaper-groups { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+.cel-wallpaper-groups a { display: inline-flex; align-items: center; min-height: 44px; padding: var(--space-2) var(--space-4); border: 1px solid var(--cel-border); border-radius: var(--radius-sm); text-decoration: none; font-weight: 600; }
+.cel-wallpaper-groups a:hover { border-color: var(--cel-accent); }
+.cel-wallpaper-group { scroll-margin-top: var(--space-6); }
+.cel-wallpaper-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); border-top: 1px solid var(--cel-border); padding-top: var(--space-6); margin-bottom: var(--space-6); }
+.cel-wallpaper-group-head h2 { font-family: var(--font-heading); margin: 0; }
+.cel-wallpaper-group-head span { color: var(--cel-text-secondary); white-space: nowrap; }
 .cel-wallpaper-card { min-width: 0; }
 .cel-wallpaper-thumbnail { display: block; width: 100%; padding: 0; border: 1px solid var(--cel-border); border-radius: var(--radius-md); background: var(--cel-surface); overflow: hidden; cursor: pointer; }
 .cel-wallpaper-thumbnail:hover { border-color: var(--cel-accent); }
 .cel-wallpaper-thumbnail img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 .cel-wallpaper-caption { align-items: center; gap: 12px; margin-top: 15px; }
-.cel-wallpaper-card h2 { font-family: var(--font-heading); font-size: 23px; line-height: 1.25; }
+.cel-wallpaper-card h3 { font-family: var(--font-heading); font-size: 23px; line-height: 1.25; }
 .cel-wallpaper-caption .cel-tag { white-space: nowrap; }
 .cel-wallpaper-card-bottom { align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 7px; color: var(--cel-text-secondary); font-size: 13px; }
 .cel-wallpaper-download { display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; }
