@@ -150,9 +150,12 @@ MIT — see [LICENSE](LICENSE).
 ## Wallpaper gallery
 
 `/wallpapers` reuses the Ports/Contribute artwork header and the shared variant picker.
-The gallery groups wallpapers by Celadon, Sky, Powder, and Jade, with jump links and
-counts for each style. The picker changes the site appearance; it never filters the collection. Select a
-wallpaper for a local display preview, dimensions, and JPEG/PNG downloads.
+The gallery groups wallpapers by Celadon, Sky, Powder, and Jade. Each group has a
+numbered introduction beside a two-column image grid on desktop, with its heading
+above the images on smaller screens and a single column on phones. Jump links and
+counts make the four styles easy to browse. The picker changes the site appearance;
+it never filters the collection. Select a wallpaper for a local display preview,
+dimensions, and JPEG/PNG downloads.
 Original-resolution files remain in the wallpaper repo.
 
 `src/data/wallpapers.json` is a generated snapshot of the
